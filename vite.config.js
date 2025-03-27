@@ -36,5 +36,18 @@ export default ({ mode }) => {
       }),
       react(),
     ],
+    build: {
+      sourcemap: true,
+    },
+    optimizeDeps: {
+      // This is a temporary fix for the Grid2 issue
+      // https://github.com/mui/material-ui/issues/32727#issuecomment-1697253782
+      include: [
+        '@mui/material/Unstable_Grid2',
+        '@emotion/react',
+        '@emotion/styled',
+        '@mui/material/Tooltip',
+      ],
+    },
   })
 }
