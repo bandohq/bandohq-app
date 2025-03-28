@@ -31,6 +31,7 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openConnectModal}
                     variant="contained"
+                    sx={{ borderRadius: "16px" }}
                     size="small"
                   >
                     Connect Wallet
@@ -43,6 +44,7 @@ export const ConnectButton = () => {
                     onClick={openChainModal}
                     variant="contained"
                     color="error"
+                    sx={{ borderRadius: "16px" }}
                     size="small"
                   >
                     Wrong network
@@ -54,6 +56,7 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openChainModal}
                     sx={{
+                      borderRadius: "16px",
                       display: { xs: "none", md: "flex", alignItems: "center" },
                     }}
                     variant="contained"
@@ -84,6 +87,7 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openAccountModal}
                     variant="contained"
+                    sx={{ borderRadius: "16px" }}
                     size="small"
                   >
                     {account.displayName}
