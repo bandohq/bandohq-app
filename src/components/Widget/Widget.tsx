@@ -11,7 +11,6 @@ export const Widget = () => {
         boxShadow: "0px 2px 24px -7px rgba(66,66,66,0.55)",
       },
     },
-    // hiddenUI: ["walletMenu"],
   } as Partial<WidgetConfig>;
   return <BandoWidget integrator="bando-app" config={config} />;
 };
