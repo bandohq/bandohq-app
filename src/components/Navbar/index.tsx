@@ -14,18 +14,9 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-//import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from "@components/ConnectButton/ConnectButton";
 
 export default function Navbar() {
-  /*const [hideConnectBtn, setHideConnectBtn] = useState(false);
-  const { connect } = useConnect();
-
-  useEffect(() => {
-    if (window.ethereum && window.ethereum.isMiniPay) {
-      setHideConnectBtn(true);
-      connect({ connector: injected({ target: "metaMask" }) });
-    }
-  }, []);*/
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -85,7 +76,11 @@ export default function Navbar() {
               style={{ cursor: "pointer" }}
             />
           </Box>
-          
+
+          <Box sx={{ display: "block", mr: 2 }}>
+            <ConnectButton />
+          </Box>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
