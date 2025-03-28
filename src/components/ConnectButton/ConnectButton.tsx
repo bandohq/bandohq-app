@@ -1,5 +1,6 @@
 import React from "react";
 import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
+import { Button } from "@mui/material";
 export const ConnectButton = () => {
   return (
     <ConnectButtonRainbow.Custom>
@@ -27,24 +28,36 @@ export const ConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button">
+                  <Button
+                    onClick={openConnectModal}
+                    variant="contained"
+                    size="small"
+                  >
                     Connect Wallet
-                  </button>
+                  </Button>
                 );
               }
               if (chain.unsupported) {
                 return (
-                  <button onClick={openChainModal} type="button">
+                  <Button
+                    onClick={openChainModal}
+                    variant="contained"
+                    color="error"
+                    size="small"
+                  >
                     Wrong network
-                  </button>
+                  </Button>
                 );
               }
               return (
                 <div style={{ display: "flex", gap: 12 }}>
-                  <button
+                  <Button
                     onClick={openChainModal}
-                    style={{ display: "flex", alignItems: "center" }}
-                    type="button"
+                    sx={{
+                      display: { xs: "none", md: "flex", alignItems: "center" },
+                    }}
+                    variant="contained"
+                    size="small"
                   >
                     {chain.hasIcon && (
                       <div
@@ -67,13 +80,17 @@ export const ConnectButton = () => {
                       </div>
                     )}
                     {chain.name}
-                  </button>
-                  <button onClick={openAccountModal} type="button">
+                  </Button>
+                  <Button
+                    onClick={openAccountModal}
+                    variant="contained"
+                    size="small"
+                  >
                     {account.displayName}
                     {account.displayBalance
                       ? ` (${account.displayBalance})`
                       : ""}
-                  </button>
+                  </Button>
                 </div>
               );
             })()}
