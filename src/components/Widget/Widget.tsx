@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
+import { useTheme } from "@mui/material";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
+  const theme = useTheme();
   const config = {
     buildUrl: true,
+    appearance: theme.palette.mode,
     languages: {
       default: i18n.language,
       supported: ["en", "es"],
