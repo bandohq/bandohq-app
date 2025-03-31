@@ -9,6 +9,11 @@ export const Widget = () => {
   const config = {
     buildUrl: true,
     appearance: theme.palette.mode,
+    walletConfig: {
+      onConnect: () => {
+        openConnectModal?.();
+      },
+    },
     languages: {
       default: i18n.language,
       supported: ["en", "es"],
