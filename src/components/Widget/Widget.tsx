@@ -1,10 +1,17 @@
 import React from "react";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 export const Widget = () => {
+  const { openConnectModal } = useConnectModal();
   const config = {
     buildUrl: true,
     locale: "es",
+    walletConfig: {
+      onConnect: () => {
+        openConnectModal?.();
+      },
+    },
     theme: {
       container: {
         borderRadius: "24px",
