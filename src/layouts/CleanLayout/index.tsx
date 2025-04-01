@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 import Navbar from '@components/Navbar';
 import SimpleFooter from '@components/SimpleFooter';
 import theme from '@config/theme';
-const TOP_PADDING = "50px";
+const TOP_PADDING = '78px';
 
 const LayoutContainer = styled('div')(() => ({
   width: '100%',

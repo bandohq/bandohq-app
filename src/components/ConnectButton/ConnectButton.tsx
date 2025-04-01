@@ -31,10 +31,10 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openConnectModal}
                     variant="contained"
-                    sx={{ borderRadius: "16px" }}
+                    sx={{ borderRadius: "16px", bgcolor: "#000000", textTransform: "none" }}
                     size="small"
                   >
-                    Connect Wallet
+                    Connect
                   </Button>
                 );
               }
@@ -91,9 +91,6 @@ export const ConnectButton = () => {
                     size="small"
                   >
                     {account.displayName}
-                    {account.displayBalance
-                      ? ` (${account.displayBalance})`
-                      : ""}
                   </Button>
                 </div>
               );
