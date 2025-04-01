@@ -1,16 +1,22 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { useTheme } from "@mui/material";
 
 export const Widget = () => {
-  const { openConnectModal } = useConnectModal();
+  const { i18n } = useTranslation();
+  const theme = useTheme();
   const config = {
     buildUrl: true,
-    locale: "es",
+    appearance: theme.palette.mode,
     walletConfig: {
       onConnect: () => {
         openConnectModal?.();
       },
+    },
+    languages: {
+      default: i18n.language,
+      supported: ["en", "es"],
     },
     theme: {
       container: {
