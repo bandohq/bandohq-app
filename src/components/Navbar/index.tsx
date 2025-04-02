@@ -14,6 +14,7 @@ import {
   Menu,
   Popper,
   ClickAwayListener,
+  Paper,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,6 +23,8 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { GlobalPreferences } from "@components/GlobalPreferences";
 import CompanyMenu from "@components/CompanyMenu";
+import { useColorScheme } from "@mui/material/styles";
+import { useThemeContext } from '../../context/ThemeContext';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -30,7 +33,7 @@ export default function Navbar() {
   const [companyAnchorEl, setCompanyAnchorEl] = useState<null | HTMLElement>(null);
   const [companyOpen, setCompanyOpen] = useState(false);
   const ref = useRef(null);
-  const [theme, setTheme] = useState('light');
+  const { mode } = useThemeContext();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -51,9 +54,8 @@ export default function Navbar() {
   };
 
   const handleThemeChange = (newTheme: string) => {
-    setTheme(newTheme);
-    // You can add additional logic here to apply the theme to your app
-    console.log("Theme changed to", newTheme);
+    // set the actual theme from the theme
+    // This function is now empty as the theme is managed by the ThemeContext
   };
 
   const handleCompanyClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -176,14 +178,14 @@ export default function Navbar() {
         open={settingsOpen}
       >
         <ClickAwayListener onClickAway={handleSettingsClose}>
-          <Box>
+          <Paper elevation={3} style={{ borderRadius: "8px", overflow: "hidden" }}>
             <GlobalPreferences
               selectedLanguage="en"
-              selectedTheme={theme}
+              selectedTheme={mode}
               onLanguageClick={() => handleLanguageClick()}
               onThemeChange={handleThemeChange}
             />
-          </Box>
+          </Paper>
         </ClickAwayListener>
       </Popper>
       <CompanyMenu

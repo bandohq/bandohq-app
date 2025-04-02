@@ -1,8 +1,9 @@
 import { ChevronRight } from "@mui/icons-material";
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Typography, Button, Stack, Paper } from "@mui/material";
 import styled from "@emotion/styled";
 import { LightMode, DarkMode, SettingsBrightness } from "@mui/icons-material";
 import { Language } from "@mui/icons-material";
+import { useThemeContext } from "../../context/ThemeContext";
 
 interface Theme {
   id: string;
@@ -29,14 +30,13 @@ const ThemeSelector = styled(Box)(({ theme }) => ({
   background: '#f0f0f0',
   borderRadius: '20px',
   padding: '2px',
-  width: '180px', // Increased width for three options
   height: '32px',
   
   '& .slider': {
     position: 'absolute',
     top: '2px',
     left: '2px',
-    width: 'calc(33.333% - 4px)', // Now 1/3 width for three options
+    width: 'calc(34.333% - 4px)', // Now 1/3 width for three options
     height: 'calc(100% - 4px)',
     background: '#fff',
     borderRadius: '18px',
@@ -63,11 +63,10 @@ const ThemeSelector = styled(Box)(({ theme }) => ({
     zIndex: 1,
     position: 'relative',
     color: '#888',
-    fontSize: '0.85rem', // Slightly smaller font for three options
-    
+    padding: '0 6px',
+    fontSize: '0.85rem',
     '&.active': {
       color: '#000',
-      fontWeight: 'bold',
     }
   }
 }));
@@ -78,6 +77,8 @@ export const GlobalPreferences: React.FC<GlobalPreferencesProps> = ({
   onLanguageClick,
   onThemeChange,
 }) => {
+  const { mode, toggleColorMode } = useThemeContext();
+
   const getLanguageName = (code: string) => {
     const languageMap: Record<string, string> = {
       "en": "English",
@@ -86,14 +87,11 @@ export const GlobalPreferences: React.FC<GlobalPreferencesProps> = ({
   };
 
   return (
-    <Box
-      sx={{
-        bgcolor: 'white',
-        borderRadius: '8px',
-        boxShadow: 1,
-        p: 3,
-        maxWidth: 'md',
-        mx: 'auto'
+    <Paper 
+      style={{
+        borderRadius: "8px", 
+        overflow: "hidden",
+        padding: "16px"
       }}
     >
       <Typography variant="h6" sx={{ fontWeight: 500, mb: 3 }}>
@@ -110,21 +108,21 @@ export const GlobalPreferences: React.FC<GlobalPreferencesProps> = ({
             <div className={`slider ${selectedTheme}`}></div>
             <div 
               className={`theme-option ${selectedTheme === 'light' ? 'active' : ''}`}
-              onClick={() => onThemeChange('light')}
+              onClick={() => toggleColorMode()}
             >
               <LightMode fontSize="small" sx={{ mr: 0.5 }} />
               Light
             </div>
             <div 
               className={`theme-option ${selectedTheme === 'dark' ? 'active' : ''}`}
-              onClick={() => onThemeChange('dark')}
+              onClick={() => toggleColorMode()}
             >
               <DarkMode fontSize="small" sx={{ mr: 0.5 }} />
               Dark
             </div>
             <div 
               className={`theme-option ${selectedTheme === 'auto' ? 'active' : ''}`}
-              onClick={() => onThemeChange('auto')}
+              onClick={() => toggleColorMode()}
             >
               <SettingsBrightness fontSize="small" sx={{ mr: 0.5 }} />
               Auto
@@ -151,6 +149,6 @@ export const GlobalPreferences: React.FC<GlobalPreferencesProps> = ({
           </Box>
         </Button>
       </Stack>
-    </Box>
+    </Paper>
   );
 };
