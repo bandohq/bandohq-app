@@ -27,7 +27,7 @@ interface GlobalPreferencesProps {
 const ThemeSelector = styled(Box)(({ theme }) => ({
   display: 'flex',
   position: 'relative',
-  background: '#f0f0f0',
+  background: theme.palette.background.paper,
   borderRadius: '20px',
   padding: '2px',
   height: '32px',
@@ -38,7 +38,7 @@ const ThemeSelector = styled(Box)(({ theme }) => ({
     left: '2px',
     width: 'calc(34.333% - 4px)', // Now 1/3 width for three options
     height: 'calc(100% - 4px)',
-    background: '#fff',
+    background: theme.palette.ink.i300,
     borderRadius: '18px',
     transition: 'transform 0.3s ease',
     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
@@ -62,11 +62,11 @@ const ThemeSelector = styled(Box)(({ theme }) => ({
     cursor: 'pointer',
     zIndex: 1,
     position: 'relative',
-    color: '#888',
+    color: theme.palette.text.secondary,
     padding: '0 6px',
     fontSize: '0.85rem',
     '&.active': {
-      color: '#000',
+      color: theme.palette.text.primary,
     }
   }
 }));

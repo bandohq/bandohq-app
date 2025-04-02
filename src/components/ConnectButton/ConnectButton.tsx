@@ -1,7 +1,11 @@
 import React from "react";
 import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@mui/material/styles";
+
 export const ConnectButton = () => {
+  const theme = useTheme();
   return (
     <ConnectButtonRainbow.Custom>
       {({
@@ -12,6 +16,7 @@ export const ConnectButton = () => {
         openConnectModal,
         mounted,
       }) => {
+        const { t } = useTranslation("wallet");
         const ready = mounted;
         const connected = ready && account && chain;
         return (
@@ -31,10 +36,10 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openConnectModal}
                     variant="contained"
-                    sx={{ borderRadius: "16px", bgcolor: "#000000", textTransform: "none" }}
+                    sx={{ borderRadius: "16px", bgcolor: theme.palette.ink.i900, textTransform: "none", color: theme.palette.ink.i100 }}
                     size="small"
                   >
-                    Connect
+                    {t("connectWallet")}
                   </Button>
                 );
               }
@@ -47,7 +52,7 @@ export const ConnectButton = () => {
                     sx={{ borderRadius: "16px" }}
                     size="small"
                   >
-                    Wrong network
+                    {t("wrongNetwork")}
                   </Button>
                 );
               }

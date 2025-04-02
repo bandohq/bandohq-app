@@ -19,12 +19,13 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { ConnectButton } from "@components/ConnectButton/ConnectButton";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { GlobalPreferences } from "@components/GlobalPreferences";
 import CompanyMenu from "@components/CompanyMenu";
 import { useColorScheme } from "@mui/material/styles";
 import { useThemeContext } from '../../context/ThemeContext';
+import { useTheme } from "@mui/material/styles";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,6 +35,7 @@ export default function Navbar() {
   const [companyOpen, setCompanyOpen] = useState(false);
   const ref = useRef(null);
   const { mode } = useThemeContext();
+  const theme = useTheme();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -105,7 +107,7 @@ export default function Navbar() {
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
           <Box
-            sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}
+            sx={{ flexGrow: 1, display: "flex", alignItems: "center", cursor: "pointer" }}
             ref={ref}
             color="inherit"
             aria-label="settings"
@@ -115,13 +117,13 @@ export default function Navbar() {
             onClick={handleCompanyClick}
           >
             <img
-              src="/bando.svg"
+              src={theme.palette.mode === "dark" ? "/bando_white.svg" : "/bando.svg"}
               width={100}
               height={20}
               alt="Bando Logo"
               style={{ cursor: "pointer" }}
             />
-            <ArrowDropDownIcon sx={{ maxWidth: '15px'}} />
+            <KeyboardArrowDownIcon sx={{ maxWidth: '15px'}} />
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
