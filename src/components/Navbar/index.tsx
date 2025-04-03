@@ -141,6 +141,7 @@ export default function Navbar() {
               aria-expanded={settingsOpen ? 'true' : undefined}
               sx={{ mr: 1 }}
               onClick={handleSettingsClick}
+              disableRipple
             >
               <MoreHorizIcon />
             </IconButton>

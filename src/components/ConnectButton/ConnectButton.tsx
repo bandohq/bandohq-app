@@ -61,39 +61,32 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openChainModal}
                     sx={{
-                      borderRadius: "16px",
                       display: { xs: "none", md: "flex", alignItems: "center" },
+                      backgroundColor: 'transparent',
+                      boxShadow: 'none',
+                      color: theme.palette.ink.i900,
+                      "&:hover": {
+                        backgroundColor: 'transparent',
+                        boxShadow: 'none',
+                      },
                     }}
                     variant="contained"
                     size="small"
                   >
-                    {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: 999,
-                          overflow: "hidden",
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && (
-                          <img
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            style={{ width: 12, height: 12 }}
-                          />
-                        )}
-                      </div>
+                    {chain.hasIcon && chain.iconUrl && (
+                      <img
+                        alt={chain.name ?? "Chain icon"}
+                        src={chain.iconUrl}
+                        style={{ width: 12, height: 12, marginRight: 4 }}
+                      />
                     )}
                     {chain.name}
                   </Button>
                   <Button
                     onClick={openAccountModal}
                     variant="contained"
-                    sx={{ borderRadius: "16px" }}
                     size="small"
+                    sx={{ backgroundColor: 'transparent', color: theme.palette.ink.i900, boxShadow: 'none', "&:hover": { backgroundColor: 'transparent', boxShadow: 'none' } }}
                   >
                     {account.displayName}
                   </Button>
