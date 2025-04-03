@@ -45,8 +45,8 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
           secondary: { main: '#40B494' },
           background: {
-            default: '#121212',
-            paper: '#1E1E1E',
+            default: '#1A1A1A',
+            paper: '#000000',
           },
           ink: {
             i950: '#FFFFFF',

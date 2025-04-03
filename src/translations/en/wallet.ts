@@ -1,4 +1,4 @@
 export default {
-  connectWallet: "Connect Wallet",
+  connectWallet: "Connect",
   wrongNetwork: "Wrong Network",
 };
