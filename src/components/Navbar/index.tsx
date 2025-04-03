@@ -6,23 +6,18 @@ import {
   Box,
   Toolbar,
   IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Menu,
+  SwipeableDrawer,
   Popper,
   ClickAwayListener,
   Paper,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import { ConnectButton } from "@components/ConnectButton/ConnectButton";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { GlobalPreferences } from "@components/GlobalPreferences";
 import CompanyMenu from "@components/CompanyMenu";
+import CompanyDrawer from "@components/CompanyMenu/drawer";
 import { useColorScheme } from "@mui/material/styles";
 import { useThemeContext } from '../../context/ThemeContext';
 import { useTheme } from "@mui/material/styles";
@@ -38,6 +33,10 @@ export default function Navbar() {
   const { mode } = useThemeContext();
   const theme = useTheme();
   const { t, i18n } = useTranslation();
+
+  const isMobile = () => {
+
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -68,41 +67,11 @@ export default function Navbar() {
   };
 
   const menuItems = [
-    { text: t('main:main.home', 'Home'), href: "/" },
-    { text: t('main:main.about', 'About'), href: "https://bando.cool/" },
-    { text: t('main:main.exploreProducts', 'Explore our products'), href: "/widget" },
+    { text: t('main:main.home', 'About'), href: "/" },
+    { text: t('main:main.about', 'Product'), href: "https://bando.cool/" },
+    { text: t('main:main.exploreProducts', 'Blog'), href: "/widget" },
     { text: t('main:main.contact', 'Contact'), href: "mailto:soporte@bando.cool" },
   ];
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <List>
-        {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton
-              sx={{
-                borderLeft: "4px solid black",
-                py: 2,
-                pl: 3,
-                pr: 4,
-              }}
-              href={item.href}
-            >
-              <ListItemText
-                primary={item.text}
-                sx={{
-                  "& .MuiListItemText-primary": {
-                    fontWeight: 500,
-                    color: "black",
-                  },
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -118,17 +87,34 @@ export default function Navbar() {
             aria-expanded={companyOpen ? 'true' : undefined}
           >
             <Box
-              sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-              onClick={handleCompanyClick}>
-              <img
-                src={theme.palette.mode === "dark" ? "/bando_white.svg" : "/bando.svg"}
-                width={100}
-                height={20}
-                alt={t('main:title', 'Bando Logo')}
-                style={{ cursor: "pointer" }}
-              />
-              <KeyboardArrowDownIcon sx={{ maxWidth: '15px', cursor: "pointer"}} />
+              sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: "center", cursor: "pointer" }}
+              onClick={handleCompanyClick}
+            >
+                <img
+                  src={theme.palette.mode === "dark" ? "/bando_white.svg" : "/bando.svg"}
+                  width={100}
+                  height={20}
+                  alt={t('main:title', 'Bando Logo')}
+                  style={{ cursor: "pointer" }}
+                />
+                <KeyboardArrowDownIcon sx={{ maxWidth: '15px', cursor: "pointer"}} />
             </Box>
+            <IconButton
+                color="inherit"
+                aria-label={t('main:main.openDrawer', 'open drawer')}
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ display: { sm: "none" } }}
+              >
+                <img
+                  src={theme.palette.mode === "dark" ? "/bando_white.svg" : "/bando.svg"}
+                  width={100}
+                  height={20}
+                  alt={t('main:title', 'Bando Logo')}
+                  style={{ cursor: "pointer" }}
+                />
+                <MenuIcon />
+            </IconButton>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -141,30 +127,20 @@ export default function Navbar() {
               aria-expanded={settingsOpen ? 'true' : undefined}
               sx={{ mr: 1 }}
               onClick={handleSettingsClick}
+              disableRipple
             >
               <MoreHorizIcon />
             </IconButton>
             <ConnectButton />
           </Box>
-
-          <IconButton
-            color="inherit"
-            aria-label={t('main:main.openDrawer', 'open drawer')}
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ display: { sm: "none" } }}
-          >
-            {mobileOpen ? <CloseIcon /> : <MenuIcon />}
-          </IconButton>
         </Toolbar>
       </AppBar>
-
       <Box component="nav">
-        <Drawer
-          variant="temporary"
-          anchor="right"
+        <SwipeableDrawer
+          anchor="bottom"
           open={mobileOpen}
           onClose={handleDrawerToggle}
+          onOpen={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
@@ -172,12 +148,14 @@ export default function Navbar() {
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: 240,
+              width: "100%",
+              borderTopRightRadius: "10px",
+              borderTopLeftRadius: "10px",
             },
           }}
         >
-          {drawer}
-        </Drawer>
+          <CompanyDrawer handleDrawerToggle={handleDrawerToggle} />
+        </SwipeableDrawer>
       </Box>
       <Popper
         id="settings-menu"

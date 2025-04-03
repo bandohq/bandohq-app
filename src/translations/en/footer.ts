@@ -1,3 +1,3 @@
 export default {
-  disclaimer: `© ${new Date().getFullYear()}  Bando. All rights reserved.`,
+  disclaimer: `Integrate in your wallet or dapp.`,
 };
