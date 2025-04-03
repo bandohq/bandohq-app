@@ -2,7 +2,10 @@ import React from "react";
 import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@mui/material/styles";
+
 export const ConnectButton = () => {
+  const theme = useTheme();
   return (
     <ConnectButtonRainbow.Custom>
       {({
@@ -33,7 +36,7 @@ export const ConnectButton = () => {
                   <Button
                     onClick={openConnectModal}
                     variant="contained"
-                    sx={{ borderRadius: "16px" }}
+                    sx={{ borderRadius: "16px", bgcolor: theme.palette.ink.i900, textTransform: "none", color: theme.palette.ink.i100 }}
                     size="small"
                   >
                     {t("connectWallet")}
@@ -93,9 +96,6 @@ export const ConnectButton = () => {
                     size="small"
                   >
                     {account.displayName}
-                    {account.displayBalance
-                      ? ` (${account.displayBalance})`
-                      : ""}
                   </Button>
                 </div>
               );

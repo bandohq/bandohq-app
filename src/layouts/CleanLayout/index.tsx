@@ -4,14 +4,16 @@ import { PropsWithChildren } from 'react';
 import Navbar from '@components/Navbar';
 import SimpleFooter from '@components/SimpleFooter';
 import theme from '@config/theme';
-const TOP_PADDING = "50px";
+const TOP_PADDING = '78px';
 
-const LayoutContainer = styled('div')(() => ({
+const LayoutContainer = styled('div')(({ theme }) => ({
   width: '100%',
   height: 'auto',
   minHeight: '100vh',
   background:
-    'linear-gradient(45deg, rgba(247,251,252,1) 0%,rgba(220,244,235,0.8) 40%,rgba(64,180,148,0.5) 100%);',
+    theme.palette.mode === 'dark' ?
+    'linear-gradient(65deg, #04534E 0%, #1A1A1A 80%);' :
+    'linear-gradient(65deg, rgba(247,251,252,1) 0%,rgba(220,244,235,0.8) 40%,rgba(64,180,148,0.5) 100%);',
   backgroundRepeat: 'no-repeat',
   backgroundAttachment: 'fixed',
   backgroundSize: 'cover',
