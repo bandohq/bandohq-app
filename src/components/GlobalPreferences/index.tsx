@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { ChevronRight } from "@mui/icons-material";
 import { Box, Typography, Button, Stack, Paper } from "@mui/material";
 import styled from "@emotion/styled";
 import { LightMode, DarkMode, SettingsBrightness } from "@mui/icons-material";
 import { Language } from "@mui/icons-material";
 import { useThemeContext } from "../../context/ThemeContext";
+import { LanguageSelector } from "@components/LanguageSelector";
+import { useTheme } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
 
 interface Theme {
   id: string;
@@ -19,7 +23,6 @@ const themes: Theme[] = [
 interface GlobalPreferencesProps {
   selectedLanguage: string;
   selectedTheme: string;
-  onLanguageClick: () => void;
   onThemeChange: (theme: string) => void;
 }
 
@@ -74,19 +77,29 @@ const ThemeSelector = styled(Box)(({ theme }) => ({
 export const GlobalPreferences: React.FC<GlobalPreferencesProps> = ({
   selectedLanguage,
   selectedTheme,
-  onLanguageClick,
   onThemeChange,
 }) => {
   const { mode, toggleColorMode } = useThemeContext();
-
-  const getLanguageName = (code: string) => {
-    const languageMap: Record<string, string> = {
-      "en": "English",
-    };
-    return languageMap[code] || code;
+  const [languageView, setLanguageView] = useState(false);
+  const [language, setLanguage] = useState(selectedLanguage);
+  const theme = useTheme();
+  const { t } = useTranslation();
+  
+  const onLanguageClick = (code: string) => {
+    setLanguage(code);
+    setLanguageView(false);
   };
 
-  return (
+  return languageView === true ? 
+      <LanguageSelector
+        languages={[
+          { name: "English", code: "en" },
+          { name: "Spanish", code: "es" },
+        ]}
+        selectedLanguage={selectedLanguage}
+        onLanguageSelect={onLanguageClick}
+        onBack={() => setLanguageView(false)}
+      /> : 
     <Paper 
       style={{
         borderRadius: "8px", 
@@ -94,61 +107,70 @@ export const GlobalPreferences: React.FC<GlobalPreferencesProps> = ({
         padding: "16px"
       }}
     >
-      <Typography variant="h6" sx={{ fontWeight: 500, mb: 3 }}>
-        Global preferences
-      </Typography>
-      
-      <Stack spacing={3}>
-        {/* Theme Selector */}
-        <Box>
-          <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
-            Theme
-          </Typography>
-          <ThemeSelector>
-            <div className={`slider ${selectedTheme}`}></div>
-            <div 
-              className={`theme-option ${selectedTheme === 'light' ? 'active' : ''}`}
-              onClick={() => toggleColorMode()}
-            >
-              <LightMode fontSize="small" sx={{ mr: 0.5 }} />
-              Light
-            </div>
-            <div 
-              className={`theme-option ${selectedTheme === 'dark' ? 'active' : ''}`}
-              onClick={() => toggleColorMode()}
-            >
-              <DarkMode fontSize="small" sx={{ mr: 0.5 }} />
-              Dark
-            </div>
-            <div 
-              className={`theme-option ${selectedTheme === 'auto' ? 'active' : ''}`}
-              onClick={() => toggleColorMode()}
-            >
-              <SettingsBrightness fontSize="small" sx={{ mr: 0.5 }} />
-              Auto
-            </div>
-          </ThemeSelector>
-        </Box>
-        
-        {/* Language Selector */}
-        <Button
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-between',
-            py: 1,
-            textAlign: 'left',
-            textTransform: 'none'
-          }}
-          onClick={onLanguageClick}
-        >
-          <Typography sx={{ color: 'text.secondary' }}>Language</Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography sx={{ mr: 1 }}>{getLanguageName(selectedLanguage)}</Typography>
-            <ChevronRight sx={{ color: 'text.disabled' }} />
+      <>
+        <Typography variant="h6" sx={{ fontWeight: 500, mb: 3 }}>
+          {t('main:main.settings', 'Global preferences')}
+        </Typography>
+        <Stack spacing={3}>
+          {/* Theme Selector */}
+          <Box>
+            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
+              {t('main:main.theme', 'Theme')}
+            </Typography>
+            <ThemeSelector>
+              <div className={`slider ${selectedTheme}`}></div>
+              <div 
+                className={`theme-option ${selectedTheme === 'light' ? 'active' : ''}`}
+                onClick={() => toggleColorMode()}
+              >
+                <LightMode fontSize="small" sx={{ mr: 0.5 }} />
+                {t('main:main.light', 'Light')}
+              </div>
+              <div 
+                className={`theme-option ${selectedTheme === 'dark' ? 'active' : ''}`}
+                onClick={() => toggleColorMode()}
+              >
+                <DarkMode fontSize="small" sx={{ mr: 0.5 }} />
+                {t('main:main.dark', 'Dark')}
+              </div>
+              <div 
+                className={`theme-option ${selectedTheme === 'auto' ? 'active' : ''}`}
+                onClick={() => toggleColorMode()}
+              >
+                <SettingsBrightness fontSize="small" sx={{ mr: 0.5 }} />
+                {t('main:main.auto', 'Auto')}
+              </div>
+            </ThemeSelector>
           </Box>
-        </Button>
-      </Stack>
-    </Paper>
-  );
+          <Box
+            component="button"
+            sx={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              bgcolor: 'transparent',
+              textAlign: 'left',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+              '&:hover': {
+                bgcolor: 'transparent'
+              }
+            }}
+            onClick={() => setLanguageView(true)}
+          >
+              <Typography variant="body2" sx={{ color: 'ink.i900', display: 'flex', alignItems: 'center' }}>
+                {t('main:main.language', 'Language')}
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'right', justifyContent: 'space-between' }}>
+                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', color: 'ink.i900' }}>
+                  {language}
+                </Typography>
+                <ChevronRight sx={{ color: 'text.disabled', fontSize: '1.5rem' }} />
+              </Box>
+          </Box>
+        </Stack>
+      </>
+  </Paper>
 };

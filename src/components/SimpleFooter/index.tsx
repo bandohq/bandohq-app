@@ -13,11 +13,10 @@ export default function SimpleFooter({ bgColor, textColor }: SimpleFooterProps) 
     <Container
       maxWidth={false}
       sx={{
-        minHeight: '150px',
         backgroundColor: bgColor || 'primary.main',
       }}
     >
-      <Typography variant="body2" sx={{ color: textColor, pt: 6 }} align="center">
+      <Typography variant="body2" sx={{ color: textColor, pt: 2 }} align="center">
         {t('disclaimer')}
       </Typography>
     </Container>
