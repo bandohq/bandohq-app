@@ -86,7 +86,12 @@ export const ConnectButton = () => {
                     onClick={openAccountModal}
                     variant="contained"
                     size="small"
-                    sx={{ backgroundColor: 'transparent', color: theme.palette.ink.i900, boxShadow: 'none', "&:hover": { backgroundColor: 'transparent', boxShadow: 'none' } }}
+                    sx={{ 
+                      backgroundColor: 'transparent',
+                      color: theme.palette.ink.i900,
+                      boxShadow: 'none',
+                      "&:hover": { backgroundColor: 'transparent', boxShadow: 'none' },
+                    }}
                   >
                     {account.displayName}
                   </Button>
