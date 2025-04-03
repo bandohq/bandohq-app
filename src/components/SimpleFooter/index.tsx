@@ -16,7 +16,13 @@ export default function SimpleFooter({ bgColor, textColor }: SimpleFooterProps) 
         backgroundColor: bgColor || 'primary.main',
       }}
     >
-      <Typography variant="body2" sx={{ color: textColor, pt: 2 }} align="center">
+      <Typography
+        component="a"
+        href="https://docs.bando.cool/widget"
+        target="_blank"
+        sx={{ color: textColor, pt: 2, textDecoration: 'underline', fontSize: '14px !important' }}
+        align="center"
+      >
         {t('disclaimer')}
       </Typography>
     </Container>
