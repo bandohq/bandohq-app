@@ -2,9 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme } from "@mui/material";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
+  const { openConnectModal } = useConnectModal();
   const theme = useTheme();
   const config = {
     buildUrl: true,

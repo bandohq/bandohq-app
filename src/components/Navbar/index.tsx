@@ -11,6 +11,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  Button,
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -18,6 +20,21 @@ import { ConnectButton } from "@components/ConnectButton/ConnectButton";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+
+  console.log(theme);
+
+  const styledButton = {
+    marginLeft: "2px",
+    color: theme.palette.grey[400],
+    "&:hover": {
+      color: theme.palette.grey[700],
+      backgroundColor: "transparent",
+    },
+    "&:active": {
+      backgroundColor: "transparent",
+    },
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -75,6 +92,10 @@ export default function Navbar() {
               }}
               style={{ cursor: "pointer" }}
             />
+            <Button sx={styledButton}>Spend</Button>
+            <a href="https://app.bando.cool/" target="_blank">
+              <Button sx={styledButton}>Buy/Sell</Button>
+            </a>
           </Box>
 
           <Box sx={{ display: "block", mr: 2 }}>
