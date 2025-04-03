@@ -11,8 +11,6 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Button,
-  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -20,7 +18,6 @@ import { ConnectButton } from "@components/ConnectButton/ConnectButton";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
