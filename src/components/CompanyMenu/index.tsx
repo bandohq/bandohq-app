@@ -23,6 +23,8 @@ import {
   Code,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
+
 interface MenuSection {
   title: string;
   items: { label: string; href: string; active?: boolean }[];
@@ -38,27 +40,29 @@ interface CompanyMenuProps {
 export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: CompanyMenuProps) {
   const [legalOpen, setLegalOpen] = useState(false);
   const theme = useTheme();
+  const { t } = useTranslation('main');
+  
   const menuSections: MenuSection[] = [
     {
-      title: "About",
+      title: t('main.about', 'About'),
       items: [
-        { label: "Product", href: "https://bando.cool" },
-        { label: "Blog", href: "https://bando.cool/blog" },
+        { label: t('main.product', 'Product'), href: "https://bando.cool" },
+        { label: t('main.blog', 'Blog'), href: "https://bando.cool/blog" },
       ]
     },
     {
-      title: "Protocol",
+      title: t('protocol', 'Protocol'),
       items: [
-        { label: "Docs", href: "https://docs.bando.cool" },
-        { label: "API Reference", href: "https://docs.bando.cool/ap" },
-        { label: "Become a Partner", href: "https://bando.cool/partners" },
+        { label: t('main.docs', 'Docs'), href: "https://docs.bando.cool" },
+        { label: t('main.apiReference', 'API Reference'), href: "https://docs.bando.cool/ap" },
+        { label: t('main.becomePartner', 'Become a Partner'), href: "https://bando.cool/partners" },
       ]
     },
     {
-      title: "Need help?",
+      title: t('needHelp', 'Need help?'),
       items: [
-        { label: "Support", href: "https://bando.cool/support" },
-        { label: "Contact us", href: "mailto:support@bando.cool" },
+        { label: t('main.support', 'Support'), href: "https://bando.cool/support" },
+        { label: t('main.contactUs', 'Contact us'), href: "mailto:support@bando.cool" },
       ]
     }
   ];
@@ -160,7 +164,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                   endIcon={legalOpen ? <ChevronUp /> : <ChevronDown />}
                 >
                   <Typography style={{ fontSize: "14px", textAlign: "left" }}>
-                    Legal & Privacy
+                    {t('main.legalPrivacy', 'Legal & Privacy')}
                   </Typography>
                 </Button>
                 
@@ -178,7 +182,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                         display: "block" 
                       }}
                     >
-                      Privacy Policy
+                      {t('main.privacyPolicy', 'Privacy Policy')}
                     </Typography>
                     
                     <Typography 
@@ -193,7 +197,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                         display: "block" 
                       }}
                     >
-                      Terms of Service
+                      {t('main.termsOfService', 'Terms of Service')}
                     </Typography>
                   </Box>
                 </Collapse>

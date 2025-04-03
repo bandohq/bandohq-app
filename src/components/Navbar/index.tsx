@@ -68,10 +68,10 @@ export default function Navbar() {
   };
 
   const menuItems = [
-    { text: t('main:home', 'Home'), href: "/" },
-    { text: t('main:about', 'About'), href: "https://bando.cool/" },
-    { text: t('main:exploreProducts', 'Explore our products'), href: "/widget" },
-    { text: t('main:contact', 'Contact'), href: "mailto:soporte@bando.cool" },
+    { text: t('main:main.home', 'Home'), href: "/" },
+    { text: t('main:main.about', 'About'), href: "https://bando.cool/" },
+    { text: t('main:main.exploreProducts', 'Explore our products'), href: "/widget" },
+    { text: t('main:main.contact', 'Contact'), href: "mailto:soporte@bando.cool" },
   ];
 
   const drawer = (
