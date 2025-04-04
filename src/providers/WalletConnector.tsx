@@ -3,6 +3,8 @@ import "@rainbow-me/rainbowkit/styles.css";
 import {
   connectorsForWallets,
   RainbowKitProvider,
+  lightTheme,
+  midnightTheme,
 } from "@rainbow-me/rainbowkit";
 import { createConfig, http, WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
@@ -19,7 +21,7 @@ import {
 import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
-
+import { useTheme } from "@mui/material/styles";
 const queryClient = new QueryClient();
 
 const connectors = connectorsForWallets(
@@ -46,7 +48,7 @@ const connectors = connectorsForWallets(
 
 export const WalletConnectorProvider = ({ children }) => {
   const [config, setConfig] = useState(null);
-
+  const theme = useTheme();
   const fetchActiveChains = async () => {
     const response = await fetch(`${BANDO_API_ROUTE}networks/`);
     const { data: networks } = (await response.json()) || [];
@@ -86,7 +88,9 @@ export const WalletConnectorProvider = ({ children }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        <RainbowKitProvider theme={theme.palette.mode === "dark" ? midnightTheme() : lightTheme()}>
+          {children}
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
