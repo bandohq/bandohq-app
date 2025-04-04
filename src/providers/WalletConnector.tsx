@@ -6,7 +6,16 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { createConfig, http, WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { injectedWallet } from "@rainbow-me/rainbowkit/wallets";
+import {
+  injectedWallet,
+  rainbowWallet,
+  walletConnectWallet,
+  metaMaskWallet,
+  safeWallet,
+  zerionWallet,
+  phantomWallet,
+  rabbyWallet
+} from "@rainbow-me/rainbowkit/wallets";
 import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
@@ -17,7 +26,16 @@ const connectors = connectorsForWallets(
   [
     {
       groupName: "Recommended",
-      wallets: [injectedWallet],
+      wallets: [
+        walletConnectWallet,
+        zerionWallet,
+        phantomWallet,
+        rabbyWallet,
+        rainbowWallet,
+        metaMaskWallet,
+        safeWallet,
+        injectedWallet,
+      ],
     },
   ],
   {
