@@ -1,7 +1,7 @@
 # Bando Dapp | Buy anything from your wallet.
 
 This project is a Proof of Concept created to demonstrate and test the integration of the widget developed by [Bando](https://github.com/bandohq/widget). It is built with React and uses Vite as the build tool.
-![Screenshot 2025-04-03 at 7 17 35 p m](https://github.com/user-attachments/assets/f2942944-6510-4e24-a0ca-ae12d4253410)
+![Screenshot 2025-04-03 at 7 18 36 p m](https://github.com/user-attachments/assets/bc076c31-2da1-4aba-aa2d-2dfe82dc9057)
 
 ## Main Features
 
