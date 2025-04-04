@@ -21,8 +21,8 @@ const connectors = connectorsForWallets(
     },
   ],
   {
-    appName: "Bando Widget App",
-    projectId: "044601f65212332475a09bc14ceb3c34",
+    appName: "Bando | Buy Anything from your wallet",
+    projectId: "00fcded02606b78df1f2f732def1d79f",
   }
 );
 
