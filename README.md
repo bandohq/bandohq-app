@@ -1,12 +1,77 @@
-# React + Vite
+# Widget POC (Proof of Concept)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Proof of Concept created to demonstrate and test the integration of the widget developed by [Bando](https://github.com/bandohq/widget). It is built with React and uses Vite as the build tool.
 
-Currently, two official plugins are available:
+## Main Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fully functional integration of the Bando widget.
+- Lightweight and fast development environment powered by Vite.
+- Enables quick testing and demoing of the widget.
 
-## Expanding the ESLint configuration
+## Requirements
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (version 16 or higher)
+- Yarn (recommended) or npm
+
+## Installation
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/bandohq/bandohq-app.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd bandohq-app
+```
+
+3. Install dependencies:
+
+```bash
+yarn install
+# or
+npm install
+```
+
+## Running the Project
+
+To run the project locally:
+
+```bash
+yarn dev
+# or
+npm run dev
+```
+
+This will start a local server at `http://localhost:5173`.
+
+## Using the Widget
+
+The widget integrated in this project is documented and available at the official repository:
+
+[https://github.com/bandohq/widget](https://github.com/bandohq/widget)
+
+Check the official documentation for advanced configuration and customization options.
+
+## Building for Production
+
+To generate an optimized production build:
+
+```bash
+yarn build
+# or
+npm run build
+```
+
+The build output will be located in the `dist` folder.
+
+## Contributions
+
+If you'd like to contribute, create a branch and submit a Pull Request with a clear description of your changes.
+
+## License
+
+This project is open source under the MIT license. For more details, see the [LICENSE](LICENSE) file.
+
