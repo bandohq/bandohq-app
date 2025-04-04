@@ -1,12 +1,11 @@
-# Widget POC (Proof of Concept)
+# Bando Dapp | Buy anything from your wallet.
 
 This project is a Proof of Concept created to demonstrate and test the integration of the widget developed by [Bando](https://github.com/bandohq/widget). It is built with React and uses Vite as the build tool.
 
 ## Main Features
 
-- Fully functional integration of the Bando widget.
+- Fully functional Dapp integration of the Bando widget.
 - Lightweight and fast development environment powered by Vite.
-- Enables quick testing and demoing of the widget.
 
 ## Requirements
 
@@ -73,5 +72,5 @@ If you'd like to contribute, create a branch and submit a Pull Request with a cl
 
 ## License
 
-This project is open source under the MIT license. For more details, see the [LICENSE](LICENSE) file.
+This project is open source under the Apache 2.0 license. For more details, see the [LICENSE](LICENSE) file.
 
