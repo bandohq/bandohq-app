@@ -12,7 +12,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Switch
 } from "@mui/material";
 import {
   KeyboardArrowDown as ChevronDown,
@@ -20,7 +19,6 @@ import {
   GitHub as Github,
   X,
   Telegram,
-  Code,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
@@ -47,30 +45,25 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
       title: t('main.about', 'About'),
       items: [
         { label: t('main.product', 'Product'), href: "https://bando.cool" },
-        { label: t('main.blog', 'Blog'), href: "https://bando.cool/blog" },
+        //{ label: t('main.blog', 'Blog'), href: "https://bando.cool/blog" },
       ]
     },
     {
       title: t('protocol', 'Protocol'),
       items: [
         { label: t('main.docs', 'Docs'), href: "https://docs.bando.cool" },
-        { label: t('main.apiReference', 'API Reference'), href: "https://docs.bando.cool/ap" },
-        { label: t('main.becomePartner', 'Become a Partner'), href: "https://bando.cool/partners" },
+        { label: t('main.apiReference', 'API Reference'), href: "https://docs.bando.cool/fulfiller-api/api-reference" },
+        { label: t('main.becomePartner', 'Become a Partner'), href: "https://tally.so/r/mexLqk" },
       ]
     },
     {
       title: t('needHelp', 'Need help?'),
       items: [
-        { label: t('main.support', 'Support'), href: "https://bando.cool/support" },
+        //{ label: t('main.support', 'Support'), href: "https://bando.cool/support" },
         { label: t('main.contactUs', 'Contact us'), href: "mailto:support@bando.cool" },
       ]
     }
   ];
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-    setOpen(!open);
-  };
 
   const handleClickAway = () => {
     setOpen(false);
@@ -143,7 +136,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                 <IconButton size="small" style={{ padding: "6px" }} href="https://x.com/bandocool" target="_blank">
                   <X style={{ width: "20px", height: "20px", color: theme.palette.text.primary }} />
                 </IconButton>
-                <IconButton size="small" style={{ padding: "6px" }} href="https://t.me/bandocool" target="_blank">
+                <IconButton size="small" style={{ padding: "6px" }} href="https://t.me/bandocomunidad" target="_blank">
                   <Telegram style={{ width: "20px", height: "20px", color: theme.palette.text.primary }} />
                 </IconButton>
               </Box>
