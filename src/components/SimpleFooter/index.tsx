@@ -20,7 +20,7 @@ export default function SimpleFooter({ bgColor, textColor }: SimpleFooterProps) 
         component="a"
         href="https://docs.bando.cool/widget"
         target="_blank"
-        sx={{ color: textColor, pt: 2, textDecoration: 'underline', fontSize: '14px !important' }}
+        sx={{ display: { xs: 'none', sm: 'block' }, color: textColor, pt: 2, textDecoration: 'underline', fontSize: '14px !important' }}
         align="center"
       >
         {t('disclaimer')}

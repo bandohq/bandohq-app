@@ -9,9 +9,10 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import XIcon from '@mui/icons-material/X';
 interface DrawerProps {
   handleDrawerToggle: () => void;
+  menuItems: { text: string; href: string; badge?: string }[];
 }
 
-export const CompanyDrawer = ({ handleDrawerToggle }: DrawerProps) => {
+export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -21,6 +22,54 @@ export const CompanyDrawer = ({ handleDrawerToggle }: DrawerProps) => {
 
   return (
     <Box onClick={(e) => e.stopPropagation()} sx={{ textAlign: "center" }}>
+      {/* App section */}
+      <ListItem>
+        <Typography variant="subtitle2" color="textSecondary" sx={{ fontWeight: 'bold', fontSize: '14px', flexGrow: 1 }}>
+          {t('main.app', 'App')}
+        </Typography>
+      </ListItem>
+      <List component="div" disablePadding>
+        {menuItems.map((item, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton 
+              component="a" 
+              href={item.href}
+              onClick={handleDrawerToggle}
+            >
+              <ListItemText 
+                primary={
+                  <Box
+                    component="a" 
+                    href={item.href} 
+                    sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit', fontWeight: '400' }}
+                    onClick={handleDrawerToggle}
+                  >
+                    {item.text}
+                    {item.badge && (
+                      <Box 
+                        component="span" 
+                        sx={{ 
+                          ml: 1, 
+                          px: 1, 
+                          py: 0.5, 
+                          borderRadius: '12px', 
+                          fontSize: '10px',
+                          fontWeight: 'bold',
+                          backgroundColor: 'primary.main', 
+                          color: 'white' 
+                        }}
+                      >
+                        {item.badge}
+                      </Box>
+                    )}
+                  </Box>
+                } 
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
       <Box sx={{ width: '100%', py: 2 }}>
         <List>
           {/* About section */}

@@ -4,7 +4,6 @@ import { PropsWithChildren } from 'react';
 import Navbar from '@components/Navbar';
 import SimpleFooter from '@components/SimpleFooter';
 import theme from '@config/theme';
-const TOP_PADDING = '78px';
 
 const LayoutContainer = styled('div')(({ theme }) => ({
   width: '100%',
@@ -25,7 +24,7 @@ const Container = styled('div')(() => ({
   height: 'auto',
   display: 'flex',
   padding: theme.spacing(2),
-  paddingTop: TOP_PADDING,
+  paddingTop: '20px',
 }));
 
 const ContentContainer = styled(Box)(() => ({
