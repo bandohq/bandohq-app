@@ -644,6 +644,11 @@
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.2.tgz#98c23c950a3d9b6c8f0daed06da6c3af06981340"
   integrity sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==
 
+"@intercom/messenger-js-sdk@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@intercom/messenger-js-sdk/-/messenger-js-sdk-0.0.14.tgz#a27999370cc0a82a2a57a779426df25a57891863"
+  integrity sha512-2dH4BDAh9EI90K7hUkAdZ76W79LM45Sd1OBX7t6Vzy8twpNiQ5X+7sH9G5hlJlkSGnf+vFWlFcy9TOYAyEs1hA==
+
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.8.tgz#4f0e06362e01362f823d348f1872b08f666d8142"
