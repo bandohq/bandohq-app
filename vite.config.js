@@ -25,6 +25,17 @@ export default ({ mode }) => {
     },
     plugins: [
       env("all"),
+      sentryVitePlugin({
+          org: "bando-ob",
+          project: "minipay-app",
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          include: "./dist",
+          urlPrefix: "~/",
+          reactComponentAnnotation: {
+            enabled: true,
+          },
+          automaticVercelMonitors: true,
+      }),
       createHtmlPlugin({
         viteNext: true,
         minify: true,
@@ -36,21 +47,6 @@ export default ({ mode }) => {
         },
       }),
       react(),
-      ...(mode === "production"
-        ? [
-            sentryVitePlugin({
-              org: "bando-ob",
-              project: "minipay-app",
-              authToken: process.env.SENTRY_AUTH_TOKEN,
-              include: "./dist",
-              urlPrefix: "~/",
-              reactComponentAnnotation: {
-                enabled: true,
-              },
-              automaticVercelMonitors: true,
-            }),
-          ]
-        : []),
     ],
     build: {
       sourcemap: true,

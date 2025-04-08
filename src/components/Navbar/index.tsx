@@ -10,6 +10,8 @@ import {
   Popper,
   ClickAwayListener,
   Paper,
+  Button,
+  Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ConnectButton } from "@components/ConnectButton/ConnectButton";
@@ -33,10 +35,6 @@ export default function Navbar() {
   const { mode } = useThemeContext();
   const theme = useTheme();
   const { t, i18n } = useTranslation();
-
-  const isMobile = () => {
-
-  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -67,10 +65,8 @@ export default function Navbar() {
   };
 
   const menuItems = [
-    { text: t('main:main.home', 'About'), href: "/" },
-    { text: t('main:main.about', 'Product'), href: "https://bando.cool/" },
-    { text: t('main:main.exploreProducts', 'Blog'), href: "/widget" },
-    { text: t('main:main.contact', 'Contact'), href: "mailto:soporte@bando.cool" },
+    { text: t('main:main.spend', 'Spend'), href: "/" },
+    { text: t('main:main.buySell', 'Buy/Sell'), href: "https://ramp.bando.cool/", badge: 'Only for 🇲🇽' },
   ];
 
   return (
@@ -115,6 +111,44 @@ export default function Navbar() {
                 />
                 <MenuIcon />
             </IconButton>
+            <Box sx={{ display: { xs: 'none', sm: 'flex' }, ml: 2 }}>
+              {menuItems.map((item, index) => (
+                <>
+                  {item.badge && (
+                    <Tooltip title={item.badge} arrow sx={{ bgcolor: 'primary.main' }}>
+                      <Box key={index} sx={{ position: 'relative', display: 'inline-flex' }}>
+                        <Button
+                          color="inherit"
+                          href={item.href}
+                          sx={{
+                            textTransform: 'none',
+                            '&:hover': { backgroundColor: 'transparent', textDecoration: 'underline' },
+                            fontWeight: '400'
+                          }}
+                          disableRipple
+                          disableElevation
+                          disableFocusRipple
+                          disableTouchRipple
+                        >
+                          {item.text}
+                        </Button>
+                      </Box>
+                    </Tooltip>
+                  )}
+                  {!item.badge && (
+                    <Button
+                      color="inherit"
+                      href={item.href}
+                      sx={{ 
+                        textTransform: 'none',
+                        '&:hover': { backgroundColor: 'transparent', textDecoration: 'underline' }, fontWeight: '400' }}
+                    >
+                      {item.text}
+                    </Button>
+                  )}
+                </>
+              ))}
+            </Box>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -154,7 +188,7 @@ export default function Navbar() {
             },
           }}
         >
-          <CompanyDrawer handleDrawerToggle={handleDrawerToggle} />
+          <CompanyDrawer handleDrawerToggle={handleDrawerToggle} menuItems={menuItems} />
         </SwipeableDrawer>
       </Box>
       <Popper

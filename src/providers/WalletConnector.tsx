@@ -3,32 +3,52 @@ import "@rainbow-me/rainbowkit/styles.css";
 import {
   connectorsForWallets,
   RainbowKitProvider,
+  lightTheme,
+  midnightTheme,
 } from "@rainbow-me/rainbowkit";
 import { createConfig, http, WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { injectedWallet } from "@rainbow-me/rainbowkit/wallets";
+import {
+  injectedWallet,
+  rainbowWallet,
+  walletConnectWallet,
+  metaMaskWallet,
+  safeWallet,
+  zerionWallet,
+  phantomWallet,
+  rabbyWallet
+} from "@rainbow-me/rainbowkit/wallets";
 import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
-
+import { useTheme } from "@mui/material/styles";
 const queryClient = new QueryClient();
 
 const connectors = connectorsForWallets(
   [
     {
       groupName: "Recommended",
-      wallets: [injectedWallet],
+      wallets: [
+        walletConnectWallet,
+        zerionWallet,
+        phantomWallet,
+        rabbyWallet,
+        rainbowWallet,
+        metaMaskWallet,
+        safeWallet,
+        injectedWallet,
+      ],
     },
   ],
   {
-    appName: "Bando Widget App",
-    projectId: "044601f65212332475a09bc14ceb3c34",
+    appName: "Bando | Buy Anything from your wallet",
+    projectId: "00fcded02606b78df1f2f732def1d79f",
   }
 );
 
 export const WalletConnectorProvider = ({ children }) => {
   const [config, setConfig] = useState(null);
-
+  const theme = useTheme();
   const fetchActiveChains = async () => {
     const response = await fetch(`${BANDO_API_ROUTE}networks/`);
     const { data: networks } = (await response.json()) || [];
@@ -68,7 +88,9 @@ export const WalletConnectorProvider = ({ children }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        <RainbowKitProvider theme={theme.palette.mode === "dark" ? midnightTheme() : lightTheme()}>
+          {children}
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
