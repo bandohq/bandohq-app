@@ -1,8 +1,8 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
-import { createHtmlPlugin } from 'vite-plugin-html'
 import { sentryVitePlugin } from "@sentry/vite-plugin";
+import path from "path";
+import { createHtmlPlugin } from "vite-plugin-html";
 import env from "vite-plugin-environment";
 
 // https://vite.dev/config/
@@ -26,9 +26,15 @@ export default ({ mode }) => {
     plugins: [
       env("all"),
       sentryVitePlugin({
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-        org: "bando-ob",
-        project: "minipay-app",
+          org: "bando-ob",
+          project: "minipay-app",
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          include: "./dist",
+          urlPrefix: "~/",
+          reactComponentAnnotation: {
+            enabled: true,
+          },
+          automaticVercelMonitors: true,
       }),
       createHtmlPlugin({
         viteNext: true,
