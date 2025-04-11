@@ -137,7 +137,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                   <Box style={{ paddingTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>                    
                     <Typography 
                       component="a" 
-                      href="https://ramp.bando.cool/privacy-notice"
+                      href="https://bando.cool/privacy-notice"
                       target="_blank"
                       style={{ 
                         fontSize: "14px", 
@@ -152,7 +152,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                     
                     <Typography 
                       component="a" 
-                      href="https://ramp.bando.cool/terms"
+                      href="https://bando.cool/terms"
                       target="_blank"
                       style={{ 
                         fontSize: "14px", 

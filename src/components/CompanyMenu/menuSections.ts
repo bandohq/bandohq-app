@@ -28,6 +28,7 @@ export const menuSections = (t: TFunction<"main", undefined>): MenuSection[] => 
     title: t('needHelp', 'Need help?'),
     id: 'needHelp',
     items: [
+      { label: t('main.faqs', 'FAQs'), href: "https://bando.cool#faqs" },
       { label: t('main.contactUs', 'Contact us'), href: "mailto:support@bando.cool", className: "intercom-launcher" },
     ]
   }
