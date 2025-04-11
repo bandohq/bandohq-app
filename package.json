@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bandohq/widget": "0.1.13-beta.56",
+    "@bandohq/widget": "0.1.13-beta.58",
     "@bigmi/react": "^0.1.1",
     "@intercom/messenger-js-sdk": "^0.0.14",
     "@mui/icons-material": "^7.0.0",
