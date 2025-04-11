@@ -22,11 +22,7 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-
-interface MenuSection {
-  title: string;
-  items: { label: string; href: string; active?: boolean }[];
-}
+import { menuSections } from "./menuSections";
 
 interface CompanyMenuProps {
   open: boolean;
@@ -39,32 +35,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
   const [legalOpen, setLegalOpen] = useState(false);
   const theme = useTheme();
   const { t } = useTranslation('main');
-  
-  const menuSections: MenuSection[] = [
-    {
-      title: t('main.about', 'About'),
-      items: [
-        { label: t('main.product', 'Product'), href: "https://bando.cool" },
-        //{ label: t('main.blog', 'Blog'), href: "https://bando.cool/blog" },
-      ]
-    },
-    {
-      title: t('protocol', 'Protocol'),
-      items: [
-        { label: t('main.docs', 'Docs'), href: "https://docs.bando.cool" },
-        { label: t('main.apiReference', 'API Reference'), href: "https://docs.bando.cool/fulfiller-api/api-reference" },
-        { label: t('main.becomePartner', 'Become a Partner'), href: "https://tally.so/r/mexLqk" },
-      ]
-    },
-    {
-      title: t('needHelp', 'Need help?'),
-      items: [
-        //{ label: t('main.support', 'Support'), href: "https://bando.cool/support" },
-        { label: t('main.contactUs', 'Contact us'), href: "mailto:support@bando.cool" },
-      ]
-    }
-  ];
-
+  const ms = menuSections(t);
   const handleClickAway = () => {
     setOpen(false);
   };
@@ -90,7 +61,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
             }}
           >
             <Box style={{ padding: "8px" }}>
-              {menuSections.map((section, i) => (
+              {ms.map((section, i) => (
                 <Box key={i} style={{ marginBottom: "16px" }}>
                   <Typography 
                     style={{
@@ -108,6 +79,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                         style={{ padding: "6px 12px" }}
                         component="a"
                         href={item.href}
+                        className={item.className ?? ""}
                         target="_blank"
                         sx={{ 
                           color: item.active ? theme.palette.text.primary : theme.palette.text.secondary,
@@ -165,7 +137,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                   <Box style={{ paddingTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>                    
                     <Typography 
                       component="a" 
-                      href="https://ramp.bando.cool/privacy-notice"
+                      href="https://bando.cool/privacy-notice"
                       target="_blank"
                       style={{ 
                         fontSize: "14px", 
@@ -180,7 +152,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
                     
                     <Typography 
                       component="a" 
-                      href="https://ramp.bando.cool/terms"
+                      href="https://bando.cool/terms"
                       target="_blank"
                       style={{ 
                         fontSize: "14px", 

@@ -7,18 +7,25 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import XIcon from '@mui/icons-material/X';
+import { menuSections } from "./menuSections";
+
 interface DrawerProps {
   handleDrawerToggle: () => void;
   menuItems: { text: string; href: string; badge?: string }[];
 }
 
 export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('main');
   const theme = useTheme();
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const [protocolOpen, setProtocolOpen] = useState(false);
-  const [helpOpen, setHelpOpen] = useState(false);
-  const [legalOpen, setLegalOpen] = useState(false);
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+  const ms = menuSections(t);
+
+  const toggleSection = (sectionId: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  };
 
   return (
     <Box onClick={(e) => e.stopPropagation()} sx={{ textAlign: "center" }}>
@@ -39,10 +46,7 @@ export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) =>
               <ListItemText 
                 primary={
                   <Box
-                    component="a" 
-                    href={item.href} 
                     sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit', fontWeight: '400' }}
-                    onClick={handleDrawerToggle}
                   >
                     {item.text}
                     {item.badge && (
@@ -72,86 +76,32 @@ export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) =>
       <Divider />
       <Box sx={{ width: '100%', py: 2 }}>
         <List>
-          {/* About section */}
-          <ListItem 
-            onClick={() => setAboutOpen(!aboutOpen)}
-            sx={{ cursor: 'pointer' }}
-          >
-            <Typography variant="subtitle2" color="textSecondary" sx={{ fontWeight: 'bold', fontSize: '14px', flexGrow: 1 }}>
-              {t('main.about', 'About')}
-            </Typography>
-            {aboutOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </ListItem>
-          <Collapse in={aboutOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="https://bando.cool">
-                  <ListItemText primary={t('main.product', 'Product')} />
-                </ListItemButton>
+          {/* Render sections from menuSections */}
+          {ms.map((section) => (
+            <div key={section.id}>
+              <ListItem 
+                onClick={() => toggleSection(section.id)}
+                sx={{ cursor: 'pointer' }}
+              >
+                <Typography variant="subtitle2" color="textSecondary" sx={{ fontWeight: 'bold', fontSize: '14px', flexGrow: 1 }}>
+                  {section.title}
+                </Typography>
+                {openSections[section.id] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="https://bando.cool/blog">
-                  <ListItemText primary={t('main.blog', 'Blog')} />
-                </ListItemButton>
-              </ListItem>
-            </List>
-          </Collapse>
-                    
-          {/* Protocol section */}
-          <ListItem 
-            onClick={() => setProtocolOpen(!protocolOpen)}
-            sx={{ cursor: 'pointer' }}
-          >
-            <Typography variant="subtitle2" color="textSecondary" sx={{ fontWeight: 'bold', fontSize: '14px', flexGrow: 1 }}>
-              {t('protocol', 'Protocol')}
-            </Typography>
-            {protocolOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </ListItem>
-          <Collapse in={protocolOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="https://docs.bando.cool">
-                  <ListItemText primary={t('main.docs', 'Docs')} />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="https://docs.bando.cool/ap">
-                  <ListItemText primary={t('main.apiReference', 'API Reference')} />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="https://bando.cool/partners">
-                  <ListItemText primary={t('main.becomePartner', 'Become a Partner')} />
-                </ListItemButton>
-              </ListItem>
-            </List>
-          </Collapse>
-                    
-          {/* Need help section */}
-          <ListItem 
-            onClick={() => setHelpOpen(!helpOpen)}
-            sx={{ cursor: 'pointer' }}
-          >
-            <Typography variant="subtitle2" color="textSecondary" sx={{ fontWeight: 'bold', fontSize: '14px', flexGrow: 1 }}>
-              {t('needHelp', 'Need help?')}
-            </Typography>
-            {helpOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </ListItem>
-          <Collapse in={helpOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="https://bando.cool/support">
-                  <ListItemText primary={t('main.support', 'Support')} />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="mailto:support@bando.cool">
-                  <ListItemText primary={t('main.contactUs', 'Contact us')} />
-                </ListItemButton>
-              </ListItem>
-            </List>
-          </Collapse>
-                    
+              <Collapse in={!!openSections[section.id]} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {section.items.map((item, idx) => (
+                    <ListItem key={idx} disablePadding>
+                      <ListItemButton component="a" className={item.className || ''} href={item.href} target="_blank">
+                        <ListItemText primary={item.label} />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Collapse>
+            </div>
+          ))}
+          
           {/* Social icons */}
           <Box style={{ display: "flex", padding: "8px 12px", gap: "16px"}}>
             <IconButton size="small" style={{ padding: "6px" }} href="https://github.com/bandohq" target="_blank">
@@ -164,11 +114,11 @@ export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) =>
               <TelegramIcon style={{ width: "20px", height: "20px", color: theme.palette.text.primary }} />
             </IconButton>
           </Box>
-                    
-          {/* Legal section */}
+          
+          {/* Legal section - keeping this separate as it has a different styling */}
           <Box style={{ padding: "4px 12px" }}>
             <Button 
-              onClick={() => setLegalOpen(!legalOpen)}
+              onClick={() => toggleSection('legal')}
               style={{
                 justifyContent: "space-between",
                 width: "100%",
@@ -176,18 +126,18 @@ export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) =>
                 textTransform: "none",
                 color: theme.palette.text.primary
               }}
-              endIcon={legalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+              endIcon={openSections['legal'] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             >
               <Typography style={{ fontSize: "14px", textAlign: "left" }}>
                 {t('main.legalPrivacy', 'Legal & Privacy')}
               </Typography>
             </Button>
             
-            <Collapse in={legalOpen}>
+            <Collapse in={!!openSections['legal']}>
               <Box style={{ paddingTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>                    
                 <Typography 
                   component="a" 
-                  href="https://ramp.bando.cool/privacy-notice"
+                  href="https://bando.cool/privacy-notice"
                   target="_blank"
                   style={{ 
                     fontSize: "14px", 
@@ -202,7 +152,7 @@ export const CompanyDrawer = ({ handleDrawerToggle, menuItems }: DrawerProps) =>
                 
                 <Typography 
                   component="a" 
-                  href="https://ramp.bando.cool/terms"
+                  href="https://bando.cool/terms"
                   target="_blank"
                   style={{ 
                     fontSize: "14px", 
