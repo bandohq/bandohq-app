@@ -26,5 +26,6 @@ export default {
     termsOfService: "Términos de Servicio",
     needHelp: "¿Necesitas ayuda?",
     protocol: "Protocolo",
+    faqs: "Preguntas frecuentes",
   },
 };
