@@ -12,6 +12,7 @@
   "dependencies": {
     "@bandohq/widget": "0.1.13-beta.56",
     "@bigmi/react": "^0.1.1",
+    "@intercom/messenger-js-sdk": "^0.0.14",
     "@mui/icons-material": "^7.0.0",
     "@mui/material": "^7.0.0",
     "@rainbow-me/rainbowkit": "^2.2.4",
