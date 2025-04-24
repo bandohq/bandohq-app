@@ -1,9 +1,13 @@
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
+/* eslint-disable no-undef */
+import { defineConfig, loadEnv } from "vite";
+import react from "@vitejs/plugin-react";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import path from "path";
+import { fileURLToPath } from "url";
 import { createHtmlPlugin } from "vite-plugin-html";
 import env from "vite-plugin-environment";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
 export default ({ mode }) => {
@@ -26,15 +30,15 @@ export default ({ mode }) => {
     plugins: [
       env("all"),
       sentryVitePlugin({
-          org: "bando-ob",
-          project: "minipay-app",
-          authToken: process.env.SENTRY_AUTH_TOKEN,
-          include: "./dist",
-          urlPrefix: "~/",
-          reactComponentAnnotation: {
-            enabled: true,
-          },
-          automaticVercelMonitors: true,
+        org: "bando-ob",
+        project: "minipay-app",
+        authToken: envVars.SENTRY_AUTH_TOKEN,
+        include: "./dist",
+        urlPrefix: "~/",
+        reactComponentAnnotation: {
+          enabled: true,
+        },
+        automaticVercelMonitors: true,
       }),
       createHtmlPlugin({
         viteNext: true,
