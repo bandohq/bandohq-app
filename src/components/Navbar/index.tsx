@@ -45,10 +45,6 @@ export default function Navbar() {
     setSettingsOpen(!settingsOpen);
   };
 
-  const handleLanguageClick = () => {
-    console.log("Language clicked");
-  };
-
   const handleSettingsClose = () => {
     setSettingsOpen(false);
     setAnchorEl(null);
@@ -65,8 +61,13 @@ export default function Navbar() {
   };
 
   const menuItems = [
-    { text: t('main:main.spend', 'Spend'), href: "/" },
-    { text: t('main:main.buySell', 'Buy/Sell'), href: "https://ramp.bando.cool/", badge: 'Only for 🇲🇽' },
+    { text: t("main:main.spend", "Spend"), href: "/" },
+    {
+      text: t("main:main.buySell", "Buy/Sell"),
+      href: "https://ramp.bando.cool/",
+      badge: "Only for 🇲🇽",
+    },
+    { text: t("main:main.docs", "Docs"), href: "https://docs.bando.cool/" },
   ];
 
   return (
