@@ -97,15 +97,15 @@ export default function Navbar() {
       text: t("main:main.docs", "Docs"),
       subItems: [
         {
-          text: t("main.docs", "Documentation"),
+          text: t("main:main.documentation", "Documentation"),
           href: "https://docs.bando.cool",
         },
         {
-          text: t("main.apiReference", "API Reference"),
+          text: t("main:main.apiReference", "API Reference"),
           href: "https://docs.bando.cool/fulfiller-api/api-reference",
         },
         {
-          text: t("main.becomePartner", "Become a Partner"),
+          text: t("main:main.becomePartner", "Become a Partner"),
           href: "https://tally.so/r/mexLqk",
         },
       ],

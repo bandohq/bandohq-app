@@ -17,6 +17,7 @@ export default {
     product: "Product",
     blog: "Blog",
     docs: "Docs",
+    documentation: "Documentation",
     apiReference: "API Reference",
     becomePartner: "Become a Partner",
     support: "Support",
