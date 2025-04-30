@@ -24,7 +24,6 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { GlobalPreferences } from "@components/GlobalPreferences";
 import CompanyMenu from "@components/CompanyMenu";
 import CompanyDrawer from "@components/CompanyMenu/drawer";
-import { useColorScheme } from "@mui/material/styles";
 import { useThemeContext } from "../../context/ThemeContext";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
@@ -215,7 +214,6 @@ export default function Navbar() {
                           backgroundColor: "transparent",
                           textDecoration: "underline",
                         },
-                        fontWeight: "400",
                       }}
                     >
                       {item.text}
@@ -232,10 +230,6 @@ export default function Navbar() {
                         "& .MuiPaper-root": {
                           borderRadius: "8px",
                           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                          backgroundColor: (theme) =>
-                            theme.palette.mode === "dark"
-                              ? "#1E1E1E"
-                              : "#FFFFFF",
                         },
                       }}
                     >
@@ -261,6 +255,7 @@ export default function Navbar() {
                                 <ListItemText
                                   primary={subItem.text}
                                   primaryTypographyProps={{
+                                    variant: "subtitle2",
                                     sx: { fontWeight: 400 },
                                   }}
                                 />
