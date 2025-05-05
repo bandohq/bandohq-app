@@ -16,7 +16,8 @@ import {
   safeWallet,
   zerionWallet,
   phantomWallet,
-  rabbyWallet
+  rabbyWallet,
+  binanceWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
@@ -30,6 +31,7 @@ const connectors = connectorsForWallets(
       groupName: "Recommended",
       wallets: [
         walletConnectWallet,
+        binanceWallet,
         zerionWallet,
         phantomWallet,
         rabbyWallet,
