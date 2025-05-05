@@ -1,4 +1,3 @@
-// hooks/useMultisig.ts
 import { useEffect, useState } from "react";
 import SafeAppsSDK from "@safe-global/safe-apps-sdk";
 import { Connector } from "wagmi";
