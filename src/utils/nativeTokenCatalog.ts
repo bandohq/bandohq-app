@@ -304,6 +304,14 @@ const nativeTokenCatalog: NativeTokenCatalog[] = [
       decimals: 18,
     },
   },
+  {
+    key: "dai",
+    native_token: {
+      name: "xDai",
+      symbol: "xDAI",
+      decimals: 18,
+    },
+  },
 ];
 
 export default nativeTokenCatalog;
