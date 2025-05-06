@@ -28,6 +28,7 @@ import { useThemeContext } from "../../context/ThemeContext";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import type { MenuItem } from "@components/CompanyMenu/drawer";
+import { useMiniPayDetection } from '@hooks/walletDetect';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Navbar() {
   const { mode } = useThemeContext();
   const theme = useTheme();
   const { t, i18n } = useTranslation();
+  const { isMiniPay } = useMiniPayDetection();
   const [hoverItem, setHoverItem] = useState<{
     element: HTMLElement | null;
     item: MenuItem | null;
@@ -87,7 +89,7 @@ export default function Navbar() {
 
   const menuItems: MenuItem[] = [
     { text: t("main:main.spend", "Spend"), href: "/" },
-    {
+    !isMiniPay && {
       text: t("main:main.buySell", "Buy/Sell"),
       href: "https://ramp.bando.cool/",
       badge: "Only for 🇲🇽",
