@@ -90,10 +90,10 @@ export const ConnectButton = () => {
                         alt={chain.name ?? "Chain icon"}
                         src={chain.iconUrl}
                         sx={{
-                          width: { xs: 18, md: 12 },
-                          height: { xs: 18, md: 12 },
+                          width: { xs: 18, md: 15 },
+                          height: { xs: 18, md: 15 },
                           mr: 1,
-                          borderRadius: '50px',
+                          borderRadius: "50px",
                         }}
                       />
                       <Box sx={{ display: { xs: "none", md: "block" } }}>
