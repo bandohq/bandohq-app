@@ -106,6 +106,7 @@ export const ConnectButton = () => {
                     variant="contained"
                     size="small"
                     sx={{
+                      fontSize: { xs: 12, sm: "1rem" },
                       backgroundColor: "transparent",
                       color: theme.palette.ink.i900,
                       boxShadow: "none",
