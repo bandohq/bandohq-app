@@ -93,6 +93,7 @@ export const ConnectButton = () => {
                           width: { xs: 18, md: 12 },
                           height: { xs: 18, md: 12 },
                           mr: 1,
+                          borderRadius: '50px',
                         }}
                       />
                       <Box sx={{ display: { xs: "none", md: "block" } }}>
