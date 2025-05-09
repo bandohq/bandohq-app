@@ -4,12 +4,10 @@ import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
-import { useMultisig } from "@hooks/useMultiSig";
-import { useAccount } from "wagmi";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
-  const { sdk, connected, safe } = useSafeAppsSDK();
+  const { connected, safe } = useSafeAppsSDK();
   const { openConnectModal } = useConnectModal();
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -37,7 +35,12 @@ export const Widget = () => {
 
   return (
     <>
-      {connected ?? <p>estás conectado</p>}
+      {connected && safe && (
+        <div style={{ marginBottom: "1rem", textAlign: "center" }}>
+          <p>Conectado a Safe: {safe.safeAddress}</p>
+          <p>Chain ID: {safe.chainId}</p>
+        </div>
+      )}
       <BandoWidget integrator="bando-app" config={config} />
     </>
   );
