@@ -180,10 +180,10 @@
   resolved "https://registry.yarnpkg.com/@bandohq/contract-abis/-/contract-abis-1.2.0.tgz#2568a9d027b0eca4cc9859f2602923845c665a18"
   integrity sha512-vFFBc+tdBoix62TaKH6NQ2YVI15jJPOoGH0BZiKwXGvFEtdIGk9rt1+q9E9MhkUZjL4Ppy4X31EjAURPjFuYKA==
 
-"@bandohq/widget@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.18.tgz#c37d3027243cdb897197590e9eeba8cd3aae450c"
-  integrity sha512-AMeeiJ5W9Km8aMfPrAg3gOAaktGnlW6ocKV0wIt/zapHLp7JWBQGKOG+qIscuBmlNb6CAKF+f8mynGPzjkPvWQ==
+"@bandohq/widget@0.1.20-beta.1":
+  version "0.1.20-beta.1"
+  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.20-beta.1.tgz#87492a4abb8d54fca4746bcaf132f581c4779840"
+  integrity sha512-f6wEHL3DLIPUvBrfwafAz7G4iniCfYXcaTu1yXhUJDaBWFgex57RMgibiXiOxh+8tfBGRq8VAsjqGDJH4yY7fw==
   dependencies:
     "@bandohq/contract-abis" "^1.2.0"
     "@bigmi/client" "^0.0.4"
@@ -194,6 +194,7 @@
     "@mui/material" "^6.1.5"
     "@mui/system" "^6.1.6"
     "@phosphor-icons/react" "^2.1.7"
+    "@safe-global/safe-apps-sdk" "^9.1.0"
     "@solana/wallet-adapter-base" "^0.9.23"
     "@solana/web3.js" "^1.95.3"
     "@tanstack/react-virtual" "^3.10.9"
