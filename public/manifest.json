@@ -1,0 +1,30 @@
+{
+  "short_name": "Bando",
+  "name": "Bando",
+  "description": "Bando Dapp",
+  "iconPath": "/public/bando.svg",
+  "icons": [
+    {
+      "src": "/public/bando.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/public/bando_white.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/public/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/public/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone"
+}
