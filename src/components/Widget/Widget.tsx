@@ -3,16 +3,16 @@ import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 import { useMultisig } from "@hooks/useMultiSig";
 import { useAccount } from "wagmi";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
+  const { sdk, connected, safe } = useSafeAppsSDK();
   const { openConnectModal } = useConnectModal();
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
-  const { connector } = useAccount();
-  const { isMultisig } = useMultisig(connector);
 
   const config = {
     buildUrl: true,
@@ -35,9 +35,10 @@ export const Widget = () => {
     },
   } as Partial<WidgetConfig>;
 
-  if (!isMultisig) {
-    return <></>;
-  }
-
-  return <BandoWidget integrator="bando-app" config={config} />;
+  return (
+    <>
+      {connected ?? <p>estás conectado</p>}
+      <BandoWidget integrator="bando-app" config={config} />
+    </>
+  );
 };

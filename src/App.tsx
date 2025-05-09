@@ -3,6 +3,7 @@ import { Widget } from "@components/Widget/Widget";
 import CleanLayout from "@layouts/CleanLayout";
 import { AppProvider } from "./AppProvider";
 import { ThemeProvider } from './context/ThemeContext';
+import SafeProvider from "@safe-global/safe-apps-react-sdk";
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
@@ -29,13 +30,15 @@ Sentry.init({
 
 function App() {
   return (
-    <ThemeProvider>
-      <AppProvider>
-        <CleanLayout>
-          <Widget />
-        </CleanLayout>
-      </AppProvider>
-    </ThemeProvider>
+    <SafeProvider>
+      <ThemeProvider>
+        <AppProvider>
+          <CleanLayout>
+            <Widget />
+          </CleanLayout>
+        </AppProvider>
+      </ThemeProvider>
+    </SafeProvider>
   );
 }
 
