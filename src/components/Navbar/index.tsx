@@ -28,6 +28,7 @@ import { useThemeContext } from "../../context/ThemeContext";
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import type { MenuItem } from "@components/CompanyMenu/drawer";
+import { useMiniPayDetection } from '@hooks/walletDetect';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Navbar() {
   const { mode } = useThemeContext();
   const theme = useTheme();
   const { t, i18n } = useTranslation();
+  const { isMiniPay } = useMiniPayDetection();
   const [hoverItem, setHoverItem] = useState<{
     element: HTMLElement | null;
     item: MenuItem | null;
@@ -84,14 +86,33 @@ export default function Navbar() {
   const handleHoverClose = () => {
     setHoverItem({ element: null, item: null });
   };
-
-  const menuItems: MenuItem[] = [
+  
+  const menuItems: MenuItem[] = !isMiniPay ? [
     { text: t("main:main.spend", "Spend"), href: "/" },
     {
       text: t("main:main.buySell", "Buy/Sell"),
       href: "https://ramp.bando.cool/",
       badge: "Only for 🇲🇽",
     },
+    {
+      text: t("main:main.docs", "Docs"),
+      subItems: [
+        {
+          text: t("main:main.documentation", "Documentation"),
+          href: "https://docs.bando.cool",
+        },
+        {
+          text: t("main:main.apiReference", "API Reference"),
+          href: "https://docs.bando.cool/fulfiller-api/api-reference",
+        },
+        {
+          text: t("main:main.becomePartner", "Become a Partner"),
+          href: "https://tally.so/r/mexLqk",
+        },
+      ],
+    },
+  ] : [
+    { text: t("main:main.spend", "Spend"), href: "/" },
     {
       text: t("main:main.docs", "Docs"),
       subItems: [
@@ -271,7 +292,7 @@ export default function Navbar() {
             </Box>
           </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
               ref={ref}
               color="inherit"
