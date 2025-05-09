@@ -17,6 +17,9 @@ export const Widget = () => {
     appearance: theme.palette.mode,
     walletConfig: {
       onConnect: () => {
+        if (safe) {
+          return;
+        }
         openConnectModal?.();
       },
     },
