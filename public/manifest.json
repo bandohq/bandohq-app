@@ -2,6 +2,7 @@
   "short_name": "Bando Dapp",
   "name": "Bando Dapp",
   "description": "Bando Dapp",
+  "iconPath": "bando.svg",
   "icons": [
     {
       "src": "bando.svg",
