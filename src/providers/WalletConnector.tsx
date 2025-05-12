@@ -19,6 +19,7 @@ import {
   rabbyWallet,
   binanceWallet,
 } from "@rainbow-me/rainbowkit/wallets";
+import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
 import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
@@ -48,6 +49,8 @@ const connectors = connectorsForWallets(
   }
 );
 
+const farcasterFrameConnector = farcasterFrame();
+
 export const WalletConnectorProvider = ({ children }) => {
   const [config, setConfig] = useState(null);
   const theme = useTheme();
@@ -70,7 +73,7 @@ export const WalletConnectorProvider = ({ children }) => {
       });
 
       const wagmiConfig = createConfig({
-        connectors,
+        connectors: [farcasterFrameConnector, ...connectors],
         // @ts-ignore format based on viem docs
         chains: [...chainDefinitions],
         transports: chainDefinitions.reduce((acc, chain) => {
@@ -91,7 +94,9 @@ export const WalletConnectorProvider = ({ children }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider theme={theme.palette.mode === "dark" ? midnightTheme() : lightTheme()}>
+        <RainbowKitProvider
+          theme={theme.palette.mode === "dark" ? midnightTheme() : lightTheme()}
+        >
           {children}
         </RainbowKitProvider>
       </QueryClientProvider>

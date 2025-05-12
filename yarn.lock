@@ -608,6 +608,11 @@
     ethereum-cryptography "^2.0.0"
     micro-ftch "^0.3.1"
 
+"@farcaster/frame-wagmi-connector@^0.0.27":
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/@farcaster/frame-wagmi-connector/-/frame-wagmi-connector-0.0.27.tgz#430f53073f055a5f94db97d76c49d0ef4e7b140a"
+  integrity sha512-eck3ysY5FL0Kd418cQzxgOTcISCcOQa3flMOcFWdGESnulnlIlNGuysLrJynXb1dTNsz0oVnh6lTW8NNb6z7pw==
+
 "@fontsource/kanit@^5.1.0":
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/@fontsource/kanit/-/kanit-5.2.5.tgz#d1da14db770b5a3007e2aedada82c50030ff8362"
@@ -6961,6 +6966,11 @@ yargs@^16.0.0, yargs@^16.2.0:
     string-width "^4.2.0"
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
+
+yarn@^1.22.22:
+  version "1.22.22"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.22.tgz#ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  integrity sha512-prL3kGtyG7o9Z9Sv8IPfBNrWTDmXB4Qbes8A9rEzt6wkJV8mUvoirjU0Mp3GGAU06Y0XQyA3/2/RQFVuK7MTfg==
 
 yocto-queue@^0.1.0:
   version "0.1.0"
