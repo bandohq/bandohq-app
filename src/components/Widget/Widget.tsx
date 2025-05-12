@@ -12,7 +12,7 @@ export const Widget = () => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const config = {
+  const baseConfig: Partial<WidgetConfig> = {
     buildUrl: true,
     appearance: theme.palette.mode,
     walletConfig: {
@@ -24,7 +24,7 @@ export const Widget = () => {
       },
     },
     languages: {
-      default: i18n.language,
+      default: i18n.language as "en" | "es",
       supported: ["en", "es"],
     },
     theme: {
@@ -35,6 +35,17 @@ export const Widget = () => {
       },
     },
   } as Partial<WidgetConfig>;
+
+  const config = safe
+    ? {
+        ...baseConfig,
+        walletConfig: {
+          ...baseConfig.walletConfig,
+          address: safe.safeAddress,
+          chainId: safe.chainId,
+        },
+      }
+    : baseConfig;
 
   return (
     <>
