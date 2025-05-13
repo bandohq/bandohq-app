@@ -4,6 +4,8 @@ import CleanLayout from "@layouts/CleanLayout";
 import { AppProvider } from "./AppProvider";
 import { ThemeProvider } from './context/ThemeContext';
 import * as Sentry from "@sentry/react";
+import { sdk } from "@farcaster/frame-sdk";
+import { useEffect } from "react";
 
 Sentry.init({
   dsn: "https://24644db236e19c7aa4974451d9cc5101@o4506577784602624.ingest.us.sentry.io/4509209195905024",
@@ -28,6 +30,18 @@ Sentry.init({
 
 
 function App() {
+  /**
+   * We use this only for initializing inside a farcaster frame.
+   * Learn more: 
+   * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
+  **/
+  const loadPage = async () => {
+    await sdk.actions.ready();
+  };
+
+  useEffect(() => {
+    loadPage();
+  }, []);
   return (
     <ThemeProvider>
       <AppProvider>
