@@ -292,7 +292,7 @@ export default function Navbar() {
             </Box>
           </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
               ref={ref}
               color="inherit"
