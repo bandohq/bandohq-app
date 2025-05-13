@@ -30,6 +30,11 @@ Sentry.init({
 
 
 function App() {
+  /**
+   * We use this only for initilalizing a farcaster frame
+   * see more: 
+   * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
+  **/
   const loadPage = async () => {
     await sdk.actions.ready();
   };
