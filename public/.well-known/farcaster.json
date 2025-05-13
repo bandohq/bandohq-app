@@ -12,8 +12,8 @@
       "buttonTitle": "Start",
       "splashImageUrl": "https://app.bando.cool/appicon.png",
       "splashBackgroundColor": "#ffffff",
-      "subtitle": "A new way to spend your crypto.",
-      "description": "Enable your users to spend in over 100 countries and 6,000+ products",
+      "subtitle": "Spend your crypto",
+      "description": "Enable your users to spend in over 100 countries and over 6000 products",
       "tags": [
         "spend",
         "shop",
@@ -21,9 +21,9 @@
         "bando"
       ],
       "heroImageUrl": "https://app.bando.cool/opengraph-image.png",
-      "tagline": "A new way to spend your crypto.",
+      "tagline": "Spend your crypto",
       "ogTitle": "Bando",
-      "ogDescription": "Enable your users to spend in over 100 countries and 6,000+ products",
+      "ogDescription": "Enable your users to spend in over 100 countries and over 6000 products",
       "ogImageUrl": "https://app.bando.cool/opengraph-image.png"
     }
 }
