@@ -1,0 +1,29 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjQ4ODA3NCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDRkMDU0OUY0RDhiNDZFZTFmRTFlRkYxNmZhNmYzYjBEMWU2OUU2RUQifQ",
+    "payload": "eyJkb21haW4iOiJhcHAuYmFuZG8uY29vbCJ9",
+    "signature": "MHgyMDYyNDkzMGI5MTIzMGFhMzdmZGIwZjU4ZjVjODBlNDhlZjhhZTk3Zjg3YzZjNjBmOGNlMGM4NDE3NDJkNjFkMTA5NjAzNzI1YmJlMDMzZTAxYTc0ZGE5MGUxZDk5ZjhmMjdlODhiNTBiZmFlMjc4YWM4MGM2ZjgzZGY0ODE4ZDFi"
+  },
+    "frame": {
+      "version": "1",
+      "name": "Bando",
+      "iconUrl": "https://app.bando.cool/appicon.png",
+      "homeUrl": "https://app.bando.cool/",
+      "buttonTitle": "Start",
+      "splashImageUrl": "https://app.bando.cool/appicon.png",
+      "splashBackgroundColor": "#ffffff",
+      "subtitle": "A new way to spend your crypto.",
+      "description": "Enable your users to spend in over 100 countries and 6,000+ products",
+      "tags": [
+        "spend",
+        "shop",
+        "buy",
+        "bando"
+      ],
+      "heroImageUrl": "https://app.bando.cool/opengraph-image.png",
+      "tagline": "A new way to spend your crypto.",
+      "ogTitle": "Bando",
+      "ogDescription": "Enable your users to spend in over 100 countries and 6,000+ products",
+      "ogImageUrl": "https://app.bando.cool/opengraph-image.png"
+    }
+}
