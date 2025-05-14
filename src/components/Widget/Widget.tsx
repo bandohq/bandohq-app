@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
-import { useTheme, useMediaQuery } from "@mui/material";
+import { useTheme, useMediaQuery, Typography } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 
@@ -50,7 +50,9 @@ export const Widget = () => {
     <>
       {connected && safe && (
         <div style={{ marginBottom: "1rem", textAlign: "center" }}>
-          <p>Chain ID: {safe.chainId}</p>
+          <Typography variant="body1">
+            Safe Address: {safe.safeAddress}
+          </Typography>
         </div>
       )}
       <BandoWidget integrator="bando-app" config={config} />

@@ -4,10 +4,16 @@ import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { useMiniPayDetection } from "../../hooks/walletDetect";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
+  const { connected, safe } = useSafeAppsSDK();
+
+  if (connected && safe) {
+    return null;
+  }
 
   return (
     <ConnectButtonRainbow.Custom>
