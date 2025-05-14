@@ -42,7 +42,6 @@ export const Widget = () => {
         walletConfig: {
           ...baseConfig.walletConfig,
           address: safe.safeAddress,
-          chainId: safe.chainId,
         },
       }
     : baseConfig;
@@ -51,7 +50,6 @@ export const Widget = () => {
     <>
       {connected && safe && (
         <div style={{ marginBottom: "1rem", textAlign: "center" }}>
-          <p>Conectado a Safe: {safe.safeAddress}</p>
           <p>Chain ID: {safe.chainId}</p>
         </div>
       )}
