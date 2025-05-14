@@ -11,6 +11,9 @@ export const ConnectButton = () => {
   const { isMiniPay } = useMiniPayDetection();
   const { connected: isSafeConnected, safe } = useSafeAppsSDK();
 
+  console.log("isSafeConnected", isSafeConnected);
+  console.log("safe", safe);
+
   return (
     <ConnectButtonRainbow.Custom>
       {({
@@ -23,12 +26,7 @@ export const ConnectButton = () => {
       }) => {
         const { t } = useTranslation("wallet");
         const ready = mounted;
-        const connected = ready && account && chain;
-
-        if (isSafeConnected && safe && !connected) {
-          return null;
-        }
-
+        const connected = ready && account;
         return (
           <div
             {...(!ready && {
@@ -71,10 +69,36 @@ export const ConnectButton = () => {
                   </Button>
                 );
               }
+              if (isSafeConnected && safe) {
+                return (
+                  <div style={{ display: "flex" }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      sx={{
+                        fontSize: { xs: 12, sm: "1rem" },
+                        backgroundColor: "transparent",
+                        color: theme.palette.ink.i900,
+                        boxShadow: "none",
+                        px: { xs: 0.5, sm: 1, md: 2 },
+                        py: { xs: 0.2, sm: 0.5, md: 1 },
+                        minWidth: { xs: 0, sm: 0, md: 36 },
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                          boxShadow: "none",
+                          cursor: "none",
+                        },
+                      }}
+                    >
+                      {account.displayName}
+                    </Button>
+                  </div>
+                );
+              }
 
               return (
                 <div style={{ display: "flex" }}>
-                  {!isMiniPay && !(isSafeConnected && safe) && (
+                  {!isMiniPay && !safe && !isSafeConnected && (
                     <Button
                       onClick={openChainModal}
                       sx={{
@@ -113,9 +137,7 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={
-                      isSafeConnected && safe ? undefined : openAccountModal
-                    }
+                    onClick={openAccountModal}
                     variant="contained"
                     size="small"
                     sx={{
@@ -129,7 +151,6 @@ export const ConnectButton = () => {
                       "&:hover": {
                         backgroundColor: "transparent",
                         boxShadow: "none",
-                        cursor: isSafeConnected && safe ? "default" : "pointer",
                       },
                     }}
                   >
