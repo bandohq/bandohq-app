@@ -1,3 +1,3 @@
 export default {
-  disclaimer: `Integrate in your wallet or dapp.`,
+  disclaimer: `Integrate Bando in your product.`,
 };

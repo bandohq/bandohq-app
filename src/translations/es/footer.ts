@@ -1,3 +1,3 @@
 export default {
-  disclaimer: `Integra en tu wallet o dapp.`,
+  disclaimer: `Integra Bando en tu producto.`,
 };
