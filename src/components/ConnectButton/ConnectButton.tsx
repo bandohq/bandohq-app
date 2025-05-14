@@ -86,7 +86,7 @@ export const ConnectButton = () => {
                         "&:hover": {
                           backgroundColor: "transparent",
                           boxShadow: "none",
-                          cursor: "none",
+                          cursor: "default",
                         },
                       }}
                     >

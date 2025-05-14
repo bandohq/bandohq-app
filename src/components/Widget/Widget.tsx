@@ -42,6 +42,7 @@ export const Widget = () => {
         walletConfig: {
           ...baseConfig.walletConfig,
           address: safe.safeAddress,
+          chainId: safe.chainId,
         },
       }
     : baseConfig;
