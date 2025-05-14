@@ -74,6 +74,7 @@ export const ConnectButton = () => {
                   <div style={{ display: "flex" }}>
                     <Button
                       variant="contained"
+                      onClick={openChainModal}
                       size="small"
                       sx={{
                         fontSize: { xs: 12, sm: "1rem" },
