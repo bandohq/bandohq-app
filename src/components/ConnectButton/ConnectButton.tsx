@@ -9,11 +9,7 @@ import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
-  const { connected, safe } = useSafeAppsSDK();
-
-  if (connected && safe) {
-    return null;
-  }
+  const { connected: isSafeConnected, safe } = useSafeAppsSDK();
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -28,6 +24,11 @@ export const ConnectButton = () => {
         const { t } = useTranslation("wallet");
         const ready = mounted;
         const connected = ready && account && chain;
+
+        if (isSafeConnected && safe && !connected) {
+          return null;
+        }
+
         return (
           <div
             {...(!ready && {
@@ -70,9 +71,10 @@ export const ConnectButton = () => {
                   </Button>
                 );
               }
+
               return (
                 <div style={{ display: "flex" }}>
-                  {!isMiniPay && (
+                  {!isMiniPay && !(isSafeConnected && safe) && (
                     <Button
                       onClick={openChainModal}
                       sx={{
@@ -111,7 +113,9 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={openAccountModal}
+                    onClick={
+                      isSafeConnected && safe ? undefined : openAccountModal
+                    }
                     variant="contained"
                     size="small"
                     sx={{
@@ -125,6 +129,7 @@ export const ConnectButton = () => {
                       "&:hover": {
                         backgroundColor: "transparent",
                         boxShadow: "none",
+                        cursor: isSafeConnected && safe ? "default" : "pointer",
                       },
                     }}
                   >
