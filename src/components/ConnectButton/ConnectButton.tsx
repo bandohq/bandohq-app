@@ -98,7 +98,7 @@ export const ConnectButton = () => {
 
               return (
                 <div style={{ display: "flex" }}>
-                  {!isMiniPay && !safe && !isSafeConnected && (
+                  {!isMiniPay && (
                     <Button
                       onClick={openChainModal}
                       sx={{
