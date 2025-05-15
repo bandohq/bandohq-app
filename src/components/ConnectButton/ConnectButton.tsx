@@ -4,12 +4,13 @@ import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
+import { useConnect } from "wagmi";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
-
+  const { connect, connectors } = useConnect();
   return (
     <ConnectButtonRainbow.Custom>
       {({
@@ -38,7 +39,11 @@ export const ConnectButton = () => {
               if (!connected) {
                 return (
                   <Button
-                    onClick={openConnectModal}
+                    onClick={() =>
+                      isInMiniApp
+                        ? connect({ connector: connectors[0] })
+                        : openConnectModal
+                    }
                     variant="contained"
                     sx={{
                       borderRadius: "16px",
@@ -70,6 +75,7 @@ export const ConnectButton = () => {
                   <div style={{ display: "flex" }}>
                     <Button
                       variant="contained"
+                      onClick={openAccountModal}
                       size="small"
                       sx={{
                         fontSize: { xs: 12, sm: "1rem" },
