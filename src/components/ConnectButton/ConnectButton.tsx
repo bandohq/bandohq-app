@@ -10,6 +10,16 @@ export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
+  const { connect, connectors } = useConnect();
+  const { isConnected } = useAccount();
+
+  if (isInMiniApp && !isConnected) {
+    return (
+      <Button onClick={() => connect({ connector: connectors[0] })}>
+        Connect
+      </Button>
+    );
+  }
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -109,7 +119,7 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={!isMiniPay ? openAccountModal : undefined}
+                    onClick={!isInMiniApp ? openAccountModal : undefined}
                     variant="contained"
                     size="small"
                     sx={{
