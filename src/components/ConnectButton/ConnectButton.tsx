@@ -10,29 +10,6 @@ export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
-  const { connect, connectors } = useConnect();
-  const { isConnected } = useAccount();
-
-  // Special case for miniapp - simply render a button that connects directly
-  if (isInMiniApp) {
-    const { t } = useTranslation("wallet");
-    return (
-      <Button
-        onClick={() => connect({ connector: connectors[0] })}
-        variant="contained"
-        sx={{
-          borderRadius: "16px",
-          bgcolor: theme.palette.ink.i900,
-          textTransform: "none",
-          color: theme.palette.ink.i100,
-        }}
-        size="small"
-      >
-        hola
-        {t("wallet:connectWallet")}
-      </Button>
-    );
-  }
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -132,7 +109,7 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={openAccountModal}
+                    onClick={!isMiniPay ? openAccountModal : undefined}
                     variant="contained"
                     size="small"
                     sx={{
