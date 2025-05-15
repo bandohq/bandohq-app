@@ -67,7 +67,7 @@ export const useIsFarcaster = () => {
   const [isFarcaster, setIsFarcaster] = useState(false);
 
   useEffect(() => {
-    const checkWarpcast = async () => {
+    const checkFarcaster = async () => {
       try {
         const isInMiniAppResult = await sdk.isInMiniApp();
         setIsFarcaster(isInMiniAppResult);
@@ -75,7 +75,7 @@ export const useIsFarcaster = () => {
         setIsFarcaster(false);
       }
     };
-    checkWarpcast();
+    checkFarcaster();
   }, []);
 
   return isFarcaster;
