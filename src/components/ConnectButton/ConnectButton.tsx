@@ -1,14 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
-import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
+import { useMiniPayDetection } from "../../hooks/walletDetect";
+import { sdk } from "@farcaster/frame-sdk";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
-  const isInMiniApp = useIsFarcaster();
+  const [isInMiniApp, setIsInMiniApp] = useState(false);
+
+  useEffect(() => {
+    const checkMiniApp = async () => {
+      try {
+        const isMiniAppResult = await sdk.isInMiniApp();
+        setIsInMiniApp(isMiniAppResult);
+      } catch (error) {
+        setIsInMiniApp(false);
+      }
+    };
+    checkMiniApp();
+  }, []);
+
+  console.log("isInMiniApp", isInMiniApp);
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -23,7 +38,6 @@ export const ConnectButton = () => {
         const { t } = useTranslation("wallet");
         const ready = mounted;
         const connected = ready && account && chain;
-
         return (
           <div
             {...(!ready && {
@@ -66,10 +80,10 @@ export const ConnectButton = () => {
                   </Button>
                 );
               }
-
               if (isInMiniApp) {
                 return (
                   <div style={{ display: "flex" }}>
+                    hola
                     <Button
                       variant="contained"
                       size="small"
@@ -84,7 +98,6 @@ export const ConnectButton = () => {
                         "&:hover": {
                           backgroundColor: "transparent",
                           boxShadow: "none",
-                          cursor: "default",
                         },
                       }}
                     >
