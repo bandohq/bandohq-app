@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
-import { useConnect } from "wagmi";
+import { useConnect, useAccount } from "wagmi";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
   const { connect, connectors } = useConnect();
+  const { isConnected } = useAccount();
+
+  // Special case for miniapp - simply render a button that connects directly
+  if (isInMiniApp && !isConnected && connectors.length > 0) {
+    const { t } = useTranslation("wallet");
+    return (
+      <Button
+        onClick={() => connect({ connector: connectors[0] })}
+        variant="contained"
+        sx={{
+          borderRadius: "16px",
+          bgcolor: theme.palette.ink.i900,
+          textTransform: "none",
+          color: theme.palette.ink.i100,
+        }}
+        size="small"
+      >
+        {t("wallet:connectWallet")}
+      </Button>
+    );
+  }
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -25,14 +46,6 @@ export const ConnectButton = () => {
         const { t } = useTranslation("wallet");
         const ready = mounted;
         const connected = ready && account && chain;
-
-        const handleConnectClick = () => {
-          if (isInMiniApp && connectors.length > 0) {
-            connect({ connector: connectors[0] });
-          } else {
-            openConnectModal();
-          }
-        };
 
         return (
           <div
@@ -49,7 +62,7 @@ export const ConnectButton = () => {
               if (!connected) {
                 return (
                   <Button
-                    onClick={handleConnectClick}
+                    onClick={openConnectModal}
                     variant="contained"
                     sx={{
                       borderRadius: "16px",
