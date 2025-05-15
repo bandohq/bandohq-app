@@ -39,11 +39,13 @@ export const ConnectButton = () => {
               if (!connected) {
                 return (
                   <Button
-                    onClick={() =>
-                      isInMiniApp
-                        ? connect({ connector: connectors[0] })
-                        : openConnectModal
-                    }
+                    onClick={() => {
+                      if (isInMiniApp) {
+                        connect({ connector: connectors[0] });
+                      } else {
+                        openConnectModal();
+                      }
+                    }}
                     variant="contained"
                     sx={{
                       borderRadius: "16px",
@@ -68,33 +70,6 @@ export const ConnectButton = () => {
                   >
                     {t("wallet:wrongNetwork")}
                   </Button>
-                );
-              }
-              if (isInMiniApp) {
-                return (
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      variant="contained"
-                      onClick={openAccountModal}
-                      size="small"
-                      sx={{
-                        fontSize: { xs: 12, sm: "1rem" },
-                        backgroundColor: "transparent",
-                        color: theme.palette.ink.i900,
-                        boxShadow: "none",
-                        px: { xs: 0.5, sm: 1, md: 2 },
-                        py: { xs: 0.2, sm: 0.5, md: 1 },
-                        minWidth: { xs: 0, sm: 0, md: 36 },
-                        "&:hover": {
-                          backgroundColor: "transparent",
-                          boxShadow: "none",
-                          cursor: "default",
-                        },
-                      }}
-                    >
-                      {account.displayName}
-                    </Button>
-                  </div>
                 );
               }
 
