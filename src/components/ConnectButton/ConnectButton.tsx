@@ -11,6 +11,7 @@ export const ConnectButton = () => {
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
   const { connect, connectors } = useConnect();
+
   return (
     <ConnectButtonRainbow.Custom>
       {({
@@ -24,6 +25,15 @@ export const ConnectButton = () => {
         const { t } = useTranslation("wallet");
         const ready = mounted;
         const connected = ready && account && chain;
+
+        const handleConnectClick = () => {
+          if (isInMiniApp && connectors.length > 0) {
+            connect({ connector: connectors[0] });
+          } else {
+            openConnectModal();
+          }
+        };
+
         return (
           <div
             {...(!ready && {
@@ -39,13 +49,7 @@ export const ConnectButton = () => {
               if (!connected) {
                 return (
                   <Button
-                    onClick={() => {
-                      if (isInMiniApp) {
-                        connect({ connector: connectors[0] });
-                      } else {
-                        openConnectModal();
-                      }
-                    }}
+                    onClick={handleConnectClick}
                     variant="contained"
                     sx={{
                       borderRadius: "16px",
