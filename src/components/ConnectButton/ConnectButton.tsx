@@ -23,6 +23,8 @@ export const ConnectButton = () => {
     checkMiniApp();
   }, []);
 
+  console.log("isInMiniApp", isInMiniApp);
+
   return (
     <ConnectButtonRainbow.Custom>
       {({
