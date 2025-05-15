@@ -3,17 +3,13 @@ import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
-import { useMiniPayDetection } from "../../hooks/walletDetect";
+import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
 import { sdk } from "@farcaster/frame-sdk";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
-
-  const isMiniApp = async () => {
-    const isMiniApp = await sdk.isInMiniApp();
-    return isMiniApp;
-  };
+  const isInMiniApp = useIsFarcaster();
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -70,9 +66,10 @@ export const ConnectButton = () => {
                   </Button>
                 );
               }
+
               return (
                 <div style={{ display: "flex" }}>
-                  {!isMiniPay && !isMiniApp() && (
+                  {!isMiniPay && (
                     <Button
                       onClick={openChainModal}
                       sx={{
@@ -111,7 +108,7 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={openAccountModal}
+                    onClick={isInMiniApp ? undefined : openAccountModal}
                     variant="contained"
                     size="small"
                     sx={{
