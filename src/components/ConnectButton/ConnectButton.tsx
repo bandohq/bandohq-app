@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
-import { useMiniPayDetection } from "../../hooks/walletDetect";
+import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
 import { sdk } from "@farcaster/frame-sdk";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
-  const [isInMiniApp, setIsInMiniApp] = useState(false);
-
-  useEffect(() => {
-    const checkMiniApp = async () => {
-      try {
-        const isMiniAppResult = await sdk.isInMiniApp();
-        setIsInMiniApp(isMiniAppResult);
-      } catch (error) {
-        setIsInMiniApp(false);
-      }
-    };
-    checkMiniApp();
-  }, []);
-
-  console.log("isInMiniApp", isInMiniApp);
+  const isInMiniApp = useIsFarcaster();
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -148,7 +134,7 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={openAccountModal}
+                    onClick={isInMiniApp ? undefined : openAccountModal}
                     variant="contained"
                     size="small"
                     sx={{
@@ -165,7 +151,6 @@ export const ConnectButton = () => {
                       },
                     }}
                   >
-                    {isInMiniApp && "hola"}
                     {account.displayName}
                   </Button>
                 </div>
