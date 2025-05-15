@@ -4,22 +4,11 @@ import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
-import { useConnect, useAccount } from "wagmi";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
-  const { connect, connectors } = useConnect();
-  const { isConnected } = useAccount();
-
-  if (isInMiniApp && !isConnected) {
-    return (
-      <Button onClick={() => connect({ connector: connectors[0] })}>
-        Connect
-      </Button>
-    );
-  }
 
   return (
     <ConnectButtonRainbow.Custom>
@@ -78,6 +67,33 @@ export const ConnectButton = () => {
                 );
               }
 
+              if (isInMiniApp) {
+                return (
+                  <div style={{ display: "flex" }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      sx={{
+                        fontSize: { xs: 12, sm: "1rem" },
+                        backgroundColor: "transparent",
+                        color: theme.palette.ink.i900,
+                        boxShadow: "none",
+                        px: { xs: 0.5, sm: 1, md: 2 },
+                        py: { xs: 0.2, sm: 0.5, md: 1 },
+                        minWidth: { xs: 0, sm: 0, md: 36 },
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                          boxShadow: "none",
+                          cursor: "default",
+                        },
+                      }}
+                    >
+                      {account.displayName}
+                    </Button>
+                  </div>
+                );
+              }
+
               return (
                 <div style={{ display: "flex" }}>
                   {!isMiniPay && (
@@ -119,7 +135,7 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={!isInMiniApp ? openAccountModal : undefined}
+                    onClick={openAccountModal}
                     variant="contained"
                     size="small"
                     sx={{
