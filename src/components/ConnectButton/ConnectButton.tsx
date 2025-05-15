@@ -165,6 +165,7 @@ export const ConnectButton = () => {
                       },
                     }}
                   >
+                    {isInMiniApp && "hola"}
                     {account.displayName}
                   </Button>
                 </div>
