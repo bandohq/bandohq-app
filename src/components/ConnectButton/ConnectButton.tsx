@@ -28,6 +28,7 @@ export const ConnectButton = () => {
         }}
         size="small"
       >
+        hola
         {t("wallet:connectWallet")}
       </Button>
     );
