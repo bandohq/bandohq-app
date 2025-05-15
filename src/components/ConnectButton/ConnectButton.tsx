@@ -14,7 +14,7 @@ export const ConnectButton = () => {
   const { isConnected } = useAccount();
 
   // Special case for miniapp - simply render a button that connects directly
-  if (isInMiniApp && !isConnected) {
+  if (isInMiniApp) {
     const { t } = useTranslation("wallet");
     return (
       <Button
