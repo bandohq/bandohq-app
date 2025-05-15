@@ -3,12 +3,12 @@ import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
-import { useMiniPayDetection, useIsWarpcast } from "../../hooks/walletDetect";
+import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
-  const isInMiniApp = useIsWarpcast();
+  const isInMiniApp = useIsFarcaster();
 
   return (
     <ConnectButtonRainbow.Custom>

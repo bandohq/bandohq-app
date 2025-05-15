@@ -63,22 +63,22 @@ export const useMiniPayDetection = () => {
  *
  * @returns A boolean indicating if the app is running inside a Warpcast mini app
  */
-export const useIsWarpcast = () => {
-  const [isWarpcast, setIsWarpcast] = useState(false);
+export const useIsFarcaster = () => {
+  const [isFarcaster, setIsFarcaster] = useState(false);
 
   useEffect(() => {
     const checkWarpcast = async () => {
       try {
         const isInMiniAppResult = await sdk.isInMiniApp();
-        setIsWarpcast(isInMiniAppResult);
+        setIsFarcaster(isInMiniAppResult);
       } catch (error) {
-        setIsWarpcast(false);
+        setIsFarcaster(false);
       }
     };
     checkWarpcast();
   }, []);
 
-  return isWarpcast;
+  return isFarcaster;
 };
 
 /**
