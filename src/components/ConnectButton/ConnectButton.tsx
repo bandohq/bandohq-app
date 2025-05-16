@@ -12,27 +12,6 @@ export const ConnectButton = () => {
   const isInMiniApp = useIsFarcaster();
   const { t } = useTranslation("wallet");
 
-  const { isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
-
-  if (isInMiniApp && !isConnected) {
-    return (
-      <Button
-        onClick={() => connect({ connector: connectors[0] })}
-        variant="contained"
-        sx={{
-          borderRadius: "16px",
-          bgcolor: theme.palette.ink.i900,
-          textTransform: "none",
-          color: theme.palette.ink.i100,
-        }}
-        size="small"
-      >
-        {t("wallet:connectWallet")}
-      </Button>
-    );
-  }
-
   return (
     <ConnectButtonRainbow.Custom>
       {({
@@ -129,7 +108,13 @@ export const ConnectButton = () => {
                     </Button>
                   )}
                   <Button
-                    onClick={openAccountModal}
+                    onClick={() => {
+                      if (isInMiniApp) {
+                        return undefined;
+                      } else {
+                        openConnectModal();
+                      }
+                    }}
                     variant="contained"
                     size="small"
                     sx={{
