@@ -6,7 +6,7 @@ import {
   lightTheme,
   midnightTheme,
 } from "@rainbow-me/rainbowkit";
-import { createConfig, http, useSwitchChain, WagmiProvider } from "wagmi";
+import { createConfig, http, WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import {
   injectedWallet,
@@ -24,7 +24,6 @@ import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
 import { useTheme } from "@mui/material/styles";
-import { useIsFarcaster } from "@hooks/walletDetect";
 const queryClient = new QueryClient();
 
 const connectors = connectorsForWallets(
@@ -55,8 +54,6 @@ const farcasterFrameConnector = farcasterFrame();
 export const WalletConnectorProvider = ({ children }) => {
   const [config, setConfig] = useState(null);
   const theme = useTheme();
-  const isMiniApp = useIsFarcaster();
-  const { switchChain } = useSwitchChain();
   const fetchActiveChains = async () => {
     const response = await fetch(`${BANDO_API_ROUTE}networks/`);
     const { data: networks } = (await response.json()) || [];
@@ -91,12 +88,6 @@ export const WalletConnectorProvider = ({ children }) => {
 
     setupChains();
   }, []);
-
-  useEffect(() => {
-    if (config && isMiniApp) {
-      switchChain({ chainId: 42220 });
-    }
-  }, [config, isMiniApp]);
 
   if (!config) return null;
 

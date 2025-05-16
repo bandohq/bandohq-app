@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { useIsFarcaster } from "@hooks/walletDetect";
+import { useSwitchChain } from "wagmi";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
   const { openConnectModal } = useConnectModal();
   const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.down('sm'));
-  
+  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMiniApp = useIsFarcaster();
+  const { switchChain } = useSwitchChain();
+
+  useEffect(() => {
+    if (isMiniApp) {
+      switchChain({ chainId: 42220 });
+    }
+  }, [isMiniApp]);
+
   const config = {
     buildUrl: true,
     appearance: theme.palette.mode,
