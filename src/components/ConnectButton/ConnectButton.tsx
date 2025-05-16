@@ -3,13 +3,15 @@ import { ConnectButton as ConnectButtonRainbow } from "@rainbow-me/rainbowkit";
 import { Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
-import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
-import { useAccount, useConnect } from "wagmi";
+import {
+  useMiniPayDetection,
+  useFarcasterWallet,
+} from "../../hooks/walletDetect";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
-  const isInMiniApp = useIsFarcaster();
+  const isFarcasterWallet = useFarcasterWallet();
   const { t } = useTranslation("wallet");
 
   return (
@@ -109,10 +111,10 @@ export const ConnectButton = () => {
                   )}
                   <Button
                     onClick={() => {
-                      if (isInMiniApp) {
+                      if (isFarcasterWallet) {
                         return undefined;
                       } else {
-                        openConnectModal();
+                        openAccountModal();
                       }
                     }}
                     variant="contained"

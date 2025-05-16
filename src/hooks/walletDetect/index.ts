@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { sdk } from "@farcaster/frame-sdk";
+import { useAccount } from "wagmi";
 
 /**
  * A hook that detects if the current Ethereum provider is MiniPay.
@@ -78,6 +79,34 @@ export const useIsFarcaster = () => {
     };
     checkFarcaster();
   }, []);
+
+  return isFarcaster;
+};
+
+/**
+ * A hook that detects if the connected wallet is a Farcaster wallet.
+ *
+ * @returns A boolean indicating if the connected wallet is from Farcaster
+ */
+export const useFarcasterWallet = () => {
+  const { connector } = useAccount();
+  const [isFarcaster, setIsFarcaster] = useState(false);
+
+  useEffect(() => {
+    if (!connector) return;
+
+    console.log("Conector actual ID:", connector?.id);
+    console.log("Conector actual nombre:", connector?.name);
+
+    const isFarcasterConnector =
+      connector.id === "farcasterFrame" ||
+      connector.id?.includes("farcaster") ||
+      connector.name?.toLowerCase().includes("farcaster") ||
+      connector.id === "frame" ||
+      connector.id === "farcaster";
+
+    setIsFarcaster(isFarcasterConnector);
+  }, [connector]);
 
   return isFarcaster;
 };
