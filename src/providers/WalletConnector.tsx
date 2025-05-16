@@ -95,7 +95,7 @@ export const WalletConnectorProvider = ({ children }) => {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
-          initialChain={42220}
+          //initialChain={42220}
           theme={theme.palette.mode === "dark" ? midnightTheme() : lightTheme()}
         >
           {children}
