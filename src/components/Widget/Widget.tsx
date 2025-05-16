@@ -4,10 +4,13 @@ import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery, Button } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useSwitchChain } from "wagmi";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import { useIsFarcaster } from "@hooks/walletDetect";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
   const { openConnectModal } = useConnectModal();
+  const isMiniApp = useIsFarcaster();
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const { switchChain } = useSwitchChain();
@@ -38,7 +41,31 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
-      <Button onClick={() => switchToCelo()}>Switch to Celo</Button>
+      {isMiniApp && (
+        <Button
+          onClick={() => switchToCelo()}
+          variant="contained"
+          size="small"
+          sx={{
+            backgroundColor: "#FCFF51",
+            boxShadow: "none",
+            color: "#000",
+            borderRadius: "10px",
+            fontWeight: "bold",
+            fontSize: "16px",
+            textTransform: "none",
+            width: "180px",
+            mx: "auto",
+            marginBottom: "10px",
+            "&:hover": {
+              boxShadow: "none",
+            },
+          }}
+        >
+          Switch to Celo{" "}
+          <SyncAltIcon sx={{ fontSize: "20px", marginLeft: "5px" }} />
+        </Button>
+      )}
       <BandoWidget integrator="bando-app" config={config} />
     </>
   );
