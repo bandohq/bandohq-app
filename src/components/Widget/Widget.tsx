@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery, Button } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { useSwitchChain } from "wagmi";
+import { useSwitchChain, useChainId, useAccount } from "wagmi";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import { useIsFarcaster } from "@hooks/walletDetect";
 
@@ -14,10 +14,27 @@ export const Widget = () => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const { switchChain } = useSwitchChain();
+  const chainId = useChainId();
+  const { isConnected } = useAccount();
 
-  const switchToCelo = async () => {
-    await switchChain({ chainId: 42220 });
+  const handleSwitchChain = async () => {
+    if (chainId === 42220) {
+      await switchChain({ chainId: 8453 });
+    } else {
+      await switchChain({ chainId: 42220 });
+    }
   };
+
+  useEffect(() => {
+    const handleSwitchToCelo = async () => {
+      if (isConnected) {
+        console.log("switching to celo");
+        await switchChain({ chainId: 42220 });
+      }
+    };
+
+    handleSwitchToCelo();
+  }, [isConnected]);
 
   const config = {
     buildUrl: true,
@@ -41,15 +58,15 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
-      {isMiniApp && (
+      {!isMiniApp && (
         <Button
-          onClick={() => switchToCelo()}
+          onClick={() => handleSwitchChain()}
           variant="contained"
           size="small"
           sx={{
-            backgroundColor: "#FCFF51",
+            backgroundColor: chainId !== 42220 ? "#FCFF51" : "#0052FE",
             boxShadow: "none",
-            color: "#000",
+            color: chainId !== 42220 ? "#000" : "#fff",
             borderRadius: "10px",
             fontWeight: "bold",
             fontSize: "16px",
@@ -62,7 +79,7 @@ export const Widget = () => {
             },
           }}
         >
-          Switch to Celo{" "}
+          {chainId === 42220 ? "Switch to Base" : "Switch to Celo"}
           <SyncAltIcon sx={{ fontSize: "20px", marginLeft: "5px" }} />
         </Button>
       )}
