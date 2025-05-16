@@ -14,9 +14,11 @@ export const Widget = () => {
   const { switchChain } = useSwitchChain();
 
   useEffect(() => {
-    console.log("switchChain");
-    switchChain({ chainId: 42220 });
-  }, []);
+    const switchToCelo = async () => {
+      await switchChain({ chainId: 42220 });
+    };
+    switchToCelo();
+  }, [switchChain]);
 
   const config = {
     buildUrl: true,
