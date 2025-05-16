@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery, Button } from "@mui/material";
@@ -15,7 +15,6 @@ export const Widget = () => {
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const { switchChain } = useSwitchChain();
   const chainId = useChainId();
-  const { isConnected } = useAccount();
 
   const handleSwitchChain = async () => {
     if (chainId === 42220) {
@@ -24,17 +23,6 @@ export const Widget = () => {
       await switchChain({ chainId: 42220 });
     }
   };
-
-  useEffect(() => {
-    const handleSwitchToCelo = async () => {
-      if (isConnected) {
-        console.log("switching to celo");
-        await switchChain({ chainId: 42220 });
-      }
-    };
-
-    handleSwitchToCelo();
-  }, [isConnected]);
 
   const config = {
     buildUrl: true,
@@ -58,7 +46,7 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
-      {!isMiniApp && (
+      {isMiniApp && (
         <Button
           onClick={() => handleSwitchChain()}
           variant="contained"
