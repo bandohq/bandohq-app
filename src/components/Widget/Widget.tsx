@@ -11,14 +11,11 @@ export const Widget = () => {
   const { openConnectModal } = useConnectModal();
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
-  const isMiniApp = useIsFarcaster();
   const { switchChain } = useSwitchChain();
 
   useEffect(() => {
-    if (isMiniApp) {
-      switchChain({ chainId: 42220 });
-    }
-  }, [isMiniApp]);
+    switchChain({ chainId: 42220 });
+  }, []);
 
   const config = {
     buildUrl: true,
