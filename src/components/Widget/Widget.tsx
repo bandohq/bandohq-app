@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
-import { useTheme, useMediaQuery } from "@mui/material";
+import { useTheme, useMediaQuery, Button } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { useIsFarcaster } from "@hooks/walletDetect";
 import { useSwitchChain } from "wagmi";
 
 export const Widget = () => {
@@ -13,12 +12,9 @@ export const Widget = () => {
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const { switchChain } = useSwitchChain();
 
-  useEffect(() => {
-    const switchToCelo = async () => {
-      await switchChain({ chainId: 42220 });
-    };
-    switchToCelo();
-  }, [switchChain]);
+  const switchToCelo = async () => {
+    await switchChain({ chainId: 42220 });
+  };
 
   const config = {
     buildUrl: true,
@@ -40,5 +36,10 @@ export const Widget = () => {
       },
     },
   } as Partial<WidgetConfig>;
-  return <BandoWidget integrator="bando-app" config={config} />;
+  return (
+    <>
+      <Button onClick={() => switchToCelo()}>Switch to Celo</Button>
+      <BandoWidget integrator="bando-app" config={config} />
+    </>
+  );
 };
