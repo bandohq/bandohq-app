@@ -36,15 +36,13 @@ function App() {
    * Learn more: 
    * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
   **/
-  const loadPage = async () => {
+  const initializeFarcasterFrame = async () => {
     await sdk.actions.ready();
-    if (sdk.isInMiniApp()) {
-      await sdk.actions.addFrame();
-    }
+    await sdk.actions.addFrame();
   };
 
   useEffect(() => {
-    loadPage();
+    initializeFarcasterFrame();
   }, []);
   return (
     <ThemeProvider>
