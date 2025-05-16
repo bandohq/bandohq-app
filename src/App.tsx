@@ -32,11 +32,15 @@ Sentry.init({
 function App() {
   /**
    * We use this only for initializing inside a farcaster frame.
+   * And we also prompt user to add the frame if not added.
    * Learn more: 
    * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
   **/
   const loadPage = async () => {
     await sdk.actions.ready();
+    if (sdk.isInMiniApp()) {
+      await sdk.actions.addFrame();
+    }
   };
 
   useEffect(() => {
