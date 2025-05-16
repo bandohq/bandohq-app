@@ -70,6 +70,7 @@ export const useIsFarcaster = () => {
     const checkFarcaster = async () => {
       try {
         const isInMiniAppResult = await sdk.isInMiniApp();
+        console.log("isInMiniAppResult", isInMiniAppResult);
         setIsFarcaster(isInMiniAppResult);
       } catch (error) {
         setIsFarcaster(false);
