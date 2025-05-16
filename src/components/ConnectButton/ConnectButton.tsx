@@ -6,12 +6,14 @@ import { useTheme } from "@mui/material/styles";
 import {
   useMiniPayDetection,
   useFarcasterWallet,
+  useIsFarcaster,
 } from "../../hooks/walletDetect";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isFarcasterWallet = useFarcasterWallet();
+  const isInMiniApp = useIsFarcaster();
   const { t } = useTranslation("wallet");
 
   return (
@@ -111,7 +113,7 @@ export const ConnectButton = () => {
                   )}
                   <Button
                     onClick={() => {
-                      if (isFarcasterWallet) {
+                      if (isFarcasterWallet || isInMiniApp) {
                         return undefined;
                       } else {
                         openAccountModal();
