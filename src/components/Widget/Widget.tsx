@@ -14,6 +14,7 @@ export const Widget = () => {
   const { switchChain } = useSwitchChain();
 
   useEffect(() => {
+    window.parent.postMessage({ type: "log", args: "chainID: 42220" }, "*");
     switchChain({ chainId: 42220 });
   }, []);
 
