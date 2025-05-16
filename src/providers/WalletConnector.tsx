@@ -80,9 +80,9 @@ export const WalletConnectorProvider = ({ children }) => {
           acc[chain.id] = http();
           return acc;
         }, {}),
-        initialChain:
-          chainDefinitions.find((chain) => chain.key === "cel")?.chainId ??
-          chainDefinitions[0]?.chainId,
+        // initialChain:
+        //   chainDefinitions.find((chain) => chain.key === "cel")?.chainId ??
+        //   chainDefinitions[0]?.chainId,
         autoConnect: true,
       });
 
