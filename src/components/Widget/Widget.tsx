@@ -17,6 +17,7 @@ export const Widget = () => {
       onConnect: () => {
         openConnectModal?.();
       },
+      chainId: 42220,
     },
     languages: {
       default: i18n.language,

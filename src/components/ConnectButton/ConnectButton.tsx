@@ -14,7 +14,7 @@ export const ConnectButton = () => {
 
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
-
+  console.log(isInMiniApp);
   if (isInMiniApp && !isConnected) {
     return (
       <Button
