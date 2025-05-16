@@ -59,9 +59,9 @@ export const useMiniPayDetection = () => {
 };
 
 /**
- * A hook that detects if the application is running inside a Warpcast mini app.
+ * A hook that detects if the application is running inside a Farcaster mini app.
  *
- * @returns A boolean indicating if the app is running inside a Warpcast mini app
+ * @returns A boolean indicating if the app is running inside a Farcaster mini app
  */
 export const useIsFarcaster = () => {
   const [isFarcaster, setIsFarcaster] = useState(false);
@@ -69,12 +69,19 @@ export const useIsFarcaster = () => {
   useEffect(() => {
     const checkFarcaster = async () => {
       try {
-        const isInMiniAppResult = await sdk.isInMiniApp();
-        setIsFarcaster(isInMiniAppResult);
+        const context = await sdk.context;
+
+        if (context?.location) {
+          setIsFarcaster(true);
+        } else {
+          setIsFarcaster(false);
+        }
       } catch (error) {
+        console.error("Error at detect Farcaster context:", error);
         setIsFarcaster(false);
       }
     };
+
     checkFarcaster();
   }, []);
 
@@ -86,21 +93,24 @@ export const useIsFarcaster = () => {
  */
 declare global {
   interface Window {
-    ethereum?: {
-      isMiniPay?: boolean;
-      isMetaMask?: boolean;
-      isRainbow?: boolean;
-      isPhantom?: boolean;
-      isWalletConnect?: boolean;
-      isBinance?: boolean;
-      isZerion?: boolean;
-      isSafe?: boolean;
-      isRabby?: boolean;
-      isCoinbase?: boolean;
-      isBraveWallet?: boolean;
-      on: (event: string, callback: () => void) => void;
-      removeListener: (event: string, callback: () => void) => void;
-      [key: string]: any;
-    } | any;
+    ethereum?:
+      | {
+          isMiniPay?: boolean;
+          isMetaMask?: boolean;
+          isRainbow?: boolean;
+          isPhantom?: boolean;
+          isWalletConnect?: boolean;
+          isBinance?: boolean;
+          isZerion?: boolean;
+          isSafe?: boolean;
+          isRabby?: boolean;
+          isCoinbase?: boolean;
+          isBraveWallet?: boolean;
+          on: (event: string, callback: () => void) => void;
+          removeListener: (event: string, callback: () => void) => void;
+          [key: string]: any;
+        }
+      | any;
   }
 }
+
