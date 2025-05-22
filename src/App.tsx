@@ -6,6 +6,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import * as Sentry from "@sentry/react";
 import { sdk } from "@farcaster/frame-sdk";
 import { useEffect } from "react";
+import { useIsFarcaster } from "@hooks/walletDetect";
 
 Sentry.init({
   dsn: "https://24644db236e19c7aa4974451d9cc5101@o4506577784602624.ingest.us.sentry.io/4509209195905024",
@@ -16,7 +17,7 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
     Sentry.captureConsoleIntegration({
-      levels: ["error", "log"],
+      levels: ["error"],
     }),
   ],
   // Tracing
@@ -28,17 +29,19 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
-
 function App() {
   /**
    * We use this only for initializing inside a farcaster frame.
    * And we also prompt user to add the frame if not added.
-   * Learn more: 
+   * Learn more:
    * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
-  **/
+   **/
+  const isMiniApp = useIsFarcaster();
   const initializeFarcasterFrame = async () => {
     await sdk.actions.ready();
-    await sdk.actions.addFrame();
+    if (isMiniApp) {
+      await sdk.actions.addFrame();
+    }
   };
 
   useEffect(() => {
