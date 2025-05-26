@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { sdk } from "@farcaster/frame-sdk";
+import { MiniKit } from "@worldcoin/minikit-js";
 
 /**
  * A hook that detects if the current Ethereum provider is MiniPay.
@@ -79,6 +80,29 @@ export const useIsFarcaster = () => {
   }, []);
 
   return isFarcaster;
+};
+
+/**
+ * A hook that detects if the application is running inside World App.
+ *
+ * @returns A boolean indicating if the app is running inside World App
+ */
+export const useIsWorldApp = () => {
+  const [isWorldApp, setIsWorldApp] = useState(false);
+
+  useEffect(() => {
+    const checkWorldApp = async () => {
+      try {
+        const isInstalled = MiniKit.isInstalled();
+        setIsWorldApp(isInstalled);
+      } catch (error) {
+        setIsWorldApp(false);
+      }
+    };
+    checkWorldApp();
+  }, []);
+
+  return isWorldApp;
 };
 
 /**
