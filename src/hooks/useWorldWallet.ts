@@ -17,6 +17,7 @@ export const useWorldWallet = (nonce: string): WorldWallet => {
   useEffect(() => {
     const run = async () => {
       const inWorld = MiniKit.isInstalled();
+      console.warn("inWorld", inWorld);
 
       if (!inWorld || !nonce) return;
 
@@ -40,5 +41,5 @@ export const useWorldWallet = (nonce: string): WorldWallet => {
     run();
   }, [nonce]);
 
-  return { address, signature, version };
+  return { address, signature, version, username };
 };
