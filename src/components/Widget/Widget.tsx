@@ -40,7 +40,7 @@ export const Widget = () => {
       container: {
         borderRadius: "10px",
         boxShadow: "0px 2px 24px -7px rgba(66,66,66,0.55)",
-        maxHeight: isXs ? "550px" : "600px",
+        maxHeight: "600px",
       },
     },
   } as Partial<WidgetConfig>;
