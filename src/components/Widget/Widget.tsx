@@ -16,6 +16,12 @@ export const Widget = () => {
   const { switchChain } = useSwitchChain();
   const chainId = useChainId();
 
+  const integrator = isMiniPay
+    ? "opera-minipay-app"
+    : isMiniApp
+    ? "farcaster-app"
+    : "bando-app";
+
   const handleSwitchChain = async () => {
     if (chainId === 42220) {
       await switchChain({ chainId: 8453 });
@@ -71,10 +77,7 @@ export const Widget = () => {
           <SyncAltIcon sx={{ fontSize: "20px", marginLeft: "5px" }} />
         </Button>
       )}
-      <BandoWidget
-        integrator={isMiniPay ? "opera-minipay-app" : "bando-app"}
-        config={config}
-      />
+      <BandoWidget integrator={integrator} config={config} />
     </>
   );
 };
