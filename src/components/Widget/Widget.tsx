@@ -5,14 +5,14 @@ import { useTheme, useMediaQuery, Button } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useSwitchChain, useChainId, useAccount } from "wagmi";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
-import { useIsFarcaster } from "@hooks/walletDetect";
+import { useIsFarcaster, useMiniPayDetection } from "@hooks/walletDetect";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
   const { openConnectModal } = useConnectModal();
   const isMiniApp = useIsFarcaster();
   const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
+  const { isMiniPay } = useMiniPayDetection();
   const { switchChain } = useSwitchChain();
   const chainId = useChainId();
 
@@ -71,7 +71,10 @@ export const Widget = () => {
           <SyncAltIcon sx={{ fontSize: "20px", marginLeft: "5px" }} />
         </Button>
       )}
-      <BandoWidget integrator="bando-app" config={config} />
+      <BandoWidget
+        integrator={isMiniPay ? "opera-minipay-app" : "bando-app"}
+        config={config}
+      />
     </>
   );
 };
