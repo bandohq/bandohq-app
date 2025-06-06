@@ -3,9 +3,13 @@ import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme, useMediaQuery, Button } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { useSwitchChain, useChainId, useAccount } from "wagmi";
+import { useSwitchChain, useChainId } from "wagmi";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
-import { useIsFarcaster, useMiniPayDetection } from "@hooks/walletDetect";
+import {
+  useIsBinance,
+  useIsFarcaster,
+  useMiniPayDetection,
+} from "@hooks/walletDetect";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
@@ -13,6 +17,7 @@ export const Widget = () => {
   const isMiniApp = useIsFarcaster();
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
+  const isBinance = useIsBinance();
   const { switchChain } = useSwitchChain();
   const chainId = useChainId();
 
@@ -20,6 +25,8 @@ export const Widget = () => {
     ? "opera-minipay-app"
     : isMiniApp
     ? "farcaster-app"
+    : isBinance
+    ? "binance-app"
     : "bando-app";
 
   const handleSwitchChain = async () => {
