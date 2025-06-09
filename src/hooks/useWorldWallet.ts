@@ -17,7 +17,6 @@ export const useWorldWallet = (nonce: string): WorldWallet => {
   useEffect(() => {
     const run = async () => {
       const inWorld = MiniKit.isInstalled();
-      console.warn("inWorld", inWorld);
 
       if (!inWorld || !nonce) return;
 
