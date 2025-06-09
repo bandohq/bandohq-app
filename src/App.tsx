@@ -17,7 +17,7 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
     Sentry.captureConsoleIntegration({
-      levels: ["error", "warn"],
+      levels: ["error", "log"],
     }),
   ],
   // Tracing
