@@ -29,6 +29,9 @@ export const Widget = () => {
       await switchChain({ chainId: 42220 });
     }
   };
+  
+  // we are carefully opening countries on the minipay opera wallet.
+  const miniPayCountries = ["US", "MX", "NG", "GH", "KE", "ZA"];
 
   const config = {
     buildUrl: true,
@@ -42,6 +45,9 @@ export const Widget = () => {
       default: i18n.language,
       supported: ["en", "es"],
     },
+    // If `isMiniPay` is true, restrict access to specific countries listed in `miniPayCountries`.
+    // If `isMiniPay` is false, setting `allowedCountries` to `undefined` allows access from all countries.
+    allowedCountries: isMiniPay ? miniPayCountries : undefined,
     theme: {
       container: {
         borderRadius: "10px",
