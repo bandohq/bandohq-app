@@ -82,25 +82,51 @@ export const useIsFarcaster = () => {
 };
 
 /**
+ * A hook that detects if the application is running inside a Binance mini app.
+ *
+ * @returns A boolean indicating if the app is running inside a Binance mini app
+ */
+export const useIsBinance = () => {
+  const [isBinance, setIsBinance] = useState(false);
+
+  useEffect(() => {
+    const checkBinance = () => {
+      if (typeof window !== "undefined" && window.bn) {
+        setIsBinance(true);
+      } else {
+        setIsBinance(false);
+      }
+    };
+
+    checkBinance();
+  }, []);
+
+  return isBinance;
+};
+
+/**
  * Type declaration for the global window object with Ethereum provider
  */
 declare global {
   interface Window {
-    ethereum?: {
-      isMiniPay?: boolean;
-      isMetaMask?: boolean;
-      isRainbow?: boolean;
-      isPhantom?: boolean;
-      isWalletConnect?: boolean;
-      isBinance?: boolean;
-      isZerion?: boolean;
-      isSafe?: boolean;
-      isRabby?: boolean;
-      isCoinbase?: boolean;
-      isBraveWallet?: boolean;
-      on: (event: string, callback: () => void) => void;
-      removeListener: (event: string, callback: () => void) => void;
-      [key: string]: any;
-    } | any;
+    ethereum?:
+      | {
+          isMiniPay?: boolean;
+          isMetaMask?: boolean;
+          isRainbow?: boolean;
+          isPhantom?: boolean;
+          isWalletConnect?: boolean;
+          isBinance?: boolean;
+          isZerion?: boolean;
+          isSafe?: boolean;
+          isRabby?: boolean;
+          isCoinbase?: boolean;
+          isBraveWallet?: boolean;
+          on: (event: string, callback: () => void) => void;
+          removeListener: (event: string, callback: () => void) => void;
+          [key: string]: any;
+        }
+      | any;
+    bn?: any;
   }
 }
