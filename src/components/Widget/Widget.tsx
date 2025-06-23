@@ -45,7 +45,8 @@ export const Widget = () => {
       default: i18n.language,
       supported: ["en", "es"],
     },
-    //undefined means every country
+    // If `isMiniPay` is true, restrict access to specific countries listed in `miniPayCountries`.
+    // If `isMiniPay` is false, setting `allowedCountries` to `undefined` allows access from all countries.
     allowedCountries: isMiniPay ? miniPayCountries : undefined,
     theme: {
       container: {
