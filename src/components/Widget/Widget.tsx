@@ -17,6 +17,8 @@ export const Widget = () => {
   const { isMiniPay } = useMiniPayDetection();
   const isCoinbase = useIsCoinbase();
 
+  console.log("isCoinbase", isCoinbase);
+
   const integrator = isMiniPay
     ? "opera-minipay-app"
     : isMiniApp
