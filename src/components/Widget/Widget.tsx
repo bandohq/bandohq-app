@@ -3,7 +3,11 @@ import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { useIsFarcaster, useMiniPayDetection } from "@hooks/walletDetect";
+import {
+  useIsCoinbase,
+  useIsFarcaster,
+  useMiniPayDetection,
+} from "@hooks/walletDetect";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
@@ -11,11 +15,14 @@ export const Widget = () => {
   const isMiniApp = useIsFarcaster();
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
+  const isCoinbase = useIsCoinbase();
 
   const integrator = isMiniPay
     ? "opera-minipay-app"
     : isMiniApp
     ? "farcaster-app"
+    : isCoinbase
+    ? "coinbase-app"
     : "bando-app";
 
   // we are carefully opening countries on the minipay opera wallet.
