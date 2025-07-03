@@ -21,6 +21,8 @@ export const Widget = () => {
   const { switchChain } = useSwitchChain();
   const chainId = useChainId();
 
+  console.error(isBinance, "isBinance");
+
   const integrator = isMiniPay
     ? "opera-minipay-app"
     : isMiniApp

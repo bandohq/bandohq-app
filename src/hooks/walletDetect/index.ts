@@ -90,15 +90,28 @@ export const useIsBinance = () => {
   const [isBinance, setIsBinance] = useState(false);
 
   useEffect(() => {
-    const checkBinance = () => {
-      if (typeof window !== "undefined" && window.bn) {
-        setIsBinance(true);
-      } else {
-        setIsBinance(false);
-      }
+    const detect = () => {
+      if (typeof window === "undefined") return;
+
+      const { ethereum } = window as any;
+
+      const bn =
+        ethereum?.isBinance ||
+        (Array.isArray(ethereum?.providers) &&
+          ethereum.providers.some((p: any) => p.isBinance));
+
+      setIsBinance(Boolean(bn));
     };
 
-    checkBinance();
+    detect();
+
+    window.addEventListener("ethereum#initialized", detect);
+    window.ethereum?.on?.("chainChanged", detect);
+
+    return () => {
+      window.removeEventListener("ethereum#initialized", detect);
+      window.ethereum?.removeListener?.("chainChanged", detect);
+    };
   }, []);
 
   return isBinance;
