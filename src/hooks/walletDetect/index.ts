@@ -121,25 +121,64 @@ export const useIsCoinbase = () => {
 
 
 /**
+ * A hook that detects if the application is running inside a Binance mini app.
+ *
+ * @returns A boolean indicating if the app is running inside a Binance mini app
+ */
+export const useIsBinance = () => {
+  const [isBinance, setIsBinance] = useState(false);
+
+  useEffect(() => {
+    const detect = () => {
+      if (typeof window === "undefined") return;
+
+      const { ethereum } = window as any;
+
+      const bn =
+        ethereum?.isBinance ||
+        (Array.isArray(ethereum?.providers) &&
+          ethereum.providers.some((p: any) => p.isBinance));
+
+      setIsBinance(Boolean(bn));
+    };
+
+    detect();
+
+    window.addEventListener("ethereum#initialized", detect);
+    window.ethereum?.on?.("chainChanged", detect);
+
+    return () => {
+      window.removeEventListener("ethereum#initialized", detect);
+      window.ethereum?.removeListener?.("chainChanged", detect);
+    };
+  }, []);
+
+  return isBinance;
+};
+
+/**
  * Type declaration for the global window object with Ethereum provider
  */
 declare global {
   interface Window {
-    ethereum?: {
-      isMiniPay?: boolean;
-      isMetaMask?: boolean;
-      isRainbow?: boolean;
-      isPhantom?: boolean;
-      isWalletConnect?: boolean;
-      isBinance?: boolean;
-      isZerion?: boolean;
-      isSafe?: boolean;
-      isRabby?: boolean;
-      isCoinbase?: boolean;
-      isBraveWallet?: boolean;
-      on: (event: string, callback: () => void) => void;
-      removeListener: (event: string, callback: () => void) => void;
-      [key: string]: any;
-    } | any;
+    ethereum?:
+      | {
+          isMiniPay?: boolean;
+          isMetaMask?: boolean;
+          isRainbow?: boolean;
+          isPhantom?: boolean;
+          isWalletConnect?: boolean;
+          isBinance?: boolean;
+          isZerion?: boolean;
+          isSafe?: boolean;
+          isRabby?: boolean;
+          isCoinbase?: boolean;
+          isBraveWallet?: boolean;
+          on: (event: string, callback: () => void) => void;
+          removeListener: (event: string, callback: () => void) => void;
+          [key: string]: any;
+        }
+      | any;
+    bn?: any;
   }
 }
