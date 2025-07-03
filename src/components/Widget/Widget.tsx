@@ -21,8 +21,6 @@ export const Widget = () => {
   const { switchChain } = useSwitchChain();
   const chainId = useChainId();
 
-  console.error(isBinance, "isBinance");
-
   const integrator = isMiniPay
     ? "opera-minipay-app"
     : isMiniApp
@@ -86,6 +84,7 @@ export const Widget = () => {
           <SyncAltIcon sx={{ fontSize: "20px", marginLeft: "5px" }} />
         </Button>
       )}
+      {isBinance && <p>is Binance!</p>}
       <BandoWidget integrator={integrator} config={config} />
     </>
   );
