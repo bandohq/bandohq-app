@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MiniKit } from "@worldcoin/minikit-js";
+import { generateUUID } from "../utils/generateUUID";
 
 type WorldWallet = {
   address: string | null;
@@ -8,7 +9,7 @@ type WorldWallet = {
   username: string | null;
 };
 
-export const useWorldWallet = (nonce: string): WorldWallet => {
+export const useWorldWallet = (): WorldWallet => {
   const [address, setAddress] = useState<string | null>(null);
   const [signature, setSignature] = useState<string | null>(null);
   const [version, setVersion] = useState<number | null>(null);
@@ -18,7 +19,10 @@ export const useWorldWallet = (nonce: string): WorldWallet => {
     const run = async () => {
       const inWorld = MiniKit.isInstalled();
 
-      if (!inWorld || !nonce) return;
+      if (!inWorld) return;
+
+      // Generate a random UUID for the nonce
+      const nonce = generateUUID();
 
       try {
         const username = MiniKit.user.username;
@@ -38,7 +42,7 @@ export const useWorldWallet = (nonce: string): WorldWallet => {
     };
 
     run();
-  }, [nonce]);
+  }, []);
 
   return { address, signature, version, username };
 };

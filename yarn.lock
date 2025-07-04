@@ -178,10 +178,10 @@
   resolved "https://registry.yarnpkg.com/@bandohq/contract-abis/-/contract-abis-1.2.0.tgz#2568a9d027b0eca4cc9859f2602923845c665a18"
   integrity sha512-vFFBc+tdBoix62TaKH6NQ2YVI15jJPOoGH0BZiKwXGvFEtdIGk9rt1+q9E9MhkUZjL4Ppy4X31EjAURPjFuYKA==
 
-"@bandohq/widget@^0.1.35":
-  version "0.1.35"
-  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.35.tgz#c155d4a9847d88cfe3205dd82ff944706d3f39c0"
-  integrity sha512-Ro42EFhNeQHa2BCIi4rohNyIHAFJt99hGHfxkEzrYNzm+0wUD6Y6tF1/q+dXZ0hhM1a1fZtqikFiC5cv7fdsgQ==
+"@bandohq/widget@0.1.36-beta.1":
+  version "0.1.36-beta.1"
+  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.36-beta.1.tgz#cb5ca3fe18312f87341947e88d1316b55d6c7deb"
+  integrity sha512-vWDN9WOeczxUnuxqCqDrnvZpPgTCFApebITJkoV9xlJBenuBR0Ck90uLqsW7MhJa13kSepvm1IM4w18T1xXKOQ==
   dependencies:
     "@bandohq/contract-abis" "^1.2.0"
     "@bigmi/client" "^0.0.4"
@@ -195,7 +195,7 @@
     "@solana/wallet-adapter-base" "^0.9.23"
     "@solana/web3.js" "^1.95.3"
     "@tanstack/react-virtual" "^3.10.9"
-    "@worldcoin/minikit-js" "^1.9.5"
+    "@worldcoin/minikit-js" "^1.9.6"
     "@worldcoin/minikit-react" "^1.9.6"
     add "^2.0.6"
     fuse.js "^7.0.0"
@@ -2702,7 +2702,7 @@
     ox "^0.1.0"
     zustand "^4.5"
 
-"@worldcoin/minikit-js@1.9.5", "@worldcoin/minikit-js@^1.9.5":
+"@worldcoin/minikit-js@1.9.5":
   version "1.9.5"
   resolved "https://registry.yarnpkg.com/@worldcoin/minikit-js/-/minikit-js-1.9.5.tgz#aa6ebd337cab17496abe10680a34691a5cee7718"
   integrity sha512-pO2gy4OxBcZoFFkZlpKv1Ov73apoRa3UCTCnScFj20LHH8ByjFhcTDEi1rxYg5i9ljby2PfRpClSGeG/1wbtUg==
@@ -2714,6 +2714,14 @@
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/@worldcoin/minikit-js/-/minikit-js-1.9.4.tgz#d5297202502943e8fab4f17ed1af968b0188a023"
   integrity sha512-2JqNaBhojPJgoBTI4DXr5SpMC7GKLGDbrCnBHaF9JhusQGEhtfoRnNLQL0HzFXS5SfDKMzMUouQLsZHg7MViKw==
+  dependencies:
+    "@worldcoin/idkit-core" "^2.0.2"
+    abitype "^1.0.6"
+
+"@worldcoin/minikit-js@^1.9.6":
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/@worldcoin/minikit-js/-/minikit-js-1.9.6.tgz#c653cf00bbbb6c9fe477e81956932aa4c6ebd797"
+  integrity sha512-nKPj9hQngHV0bD4/SD/XZmNAYv/zfZjptPjnuzIWouRR8AQHFpdkCPIw03QujhBG+3kUwUpsBAgYPwEk4vj2dw==
   dependencies:
     "@worldcoin/idkit-core" "^2.0.2"
     abitype "^1.0.6"
