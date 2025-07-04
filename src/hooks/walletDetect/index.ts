@@ -82,6 +82,81 @@ export const useIsFarcaster = () => {
   return isFarcaster;
 };
 
+export const useIsCoinbase = () => {
+  const [isCoinbase, setIsCoinbase] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const detect = async () => {
+      try {
+        // make sure we are in a mini app
+        if (!(await sdk.isInMiniApp())) return;
+
+        // get the provider
+        const eth =
+          "getEthereumProvider" in sdk.wallet
+            ? await (sdk.wallet as any).getEthereumProvider()
+            : (sdk.wallet as any).ethProvider ?? (window as any).ethereum;
+
+        // check if the provider is Coinbase Wallet
+        const isCb =
+          eth?.isCoinbaseWallet ||
+          eth?.isCoinbase ||
+          eth?.providers?.some((p: any) => p.isCoinbaseWallet || p.isCoinbase);
+
+        if (!cancelled) setIsCoinbase(Boolean(isCb));
+      } catch {
+        if (!cancelled) setIsCoinbase(false);
+      }
+    };
+
+    detect();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return isCoinbase;
+};
+
+
+/**
+ * A hook that detects if the application is running inside a Binance mini app.
+ *
+ * @returns A boolean indicating if the app is running inside a Binance mini app
+ */
+export const useIsBinance = () => {
+  const [isBinance, setIsBinance] = useState(false);
+
+  useEffect(() => {
+    const detect = () => {
+      if (typeof window === "undefined") return;
+
+      const { ethereum } = window as any;
+
+      const bn =
+        ethereum?.isBinance ||
+        (Array.isArray(ethereum?.providers) &&
+          ethereum.providers.some((p: any) => p.isBinance));
+
+      setIsBinance(Boolean(bn));
+    };
+
+    detect();
+
+    window.addEventListener("ethereum#initialized", detect);
+    window.ethereum?.on?.("chainChanged", detect);
+
+    return () => {
+      window.removeEventListener("ethereum#initialized", detect);
+      window.ethereum?.removeListener?.("chainChanged", detect);
+    };
+  }, []);
+
+  return isBinance;
+};
+
 /**
  * A hook that detects if the application is running inside World App.
  *
@@ -110,21 +185,24 @@ export const useIsWorldApp = () => {
  */
 declare global {
   interface Window {
-    ethereum?: {
-      isMiniPay?: boolean;
-      isMetaMask?: boolean;
-      isRainbow?: boolean;
-      isPhantom?: boolean;
-      isWalletConnect?: boolean;
-      isBinance?: boolean;
-      isZerion?: boolean;
-      isSafe?: boolean;
-      isRabby?: boolean;
-      isCoinbase?: boolean;
-      isBraveWallet?: boolean;
-      on: (event: string, callback: () => void) => void;
-      removeListener: (event: string, callback: () => void) => void;
-      [key: string]: any;
-    } | any;
+    ethereum?:
+      | {
+          isMiniPay?: boolean;
+          isMetaMask?: boolean;
+          isRainbow?: boolean;
+          isPhantom?: boolean;
+          isWalletConnect?: boolean;
+          isBinance?: boolean;
+          isZerion?: boolean;
+          isSafe?: boolean;
+          isRabby?: boolean;
+          isCoinbase?: boolean;
+          isBraveWallet?: boolean;
+          on: (event: string, callback: () => void) => void;
+          removeListener: (event: string, callback: () => void) => void;
+          [key: string]: any;
+        }
+      | any;
+    bn?: any;
   }
 }

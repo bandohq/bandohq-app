@@ -220,7 +220,7 @@ export const CompanyDrawer = ({
             <IconButton
               size="small"
               style={{ padding: "6px" }}
-              href="https://t.me/bandocool"
+              href="https://t.me/bandocomunidad"
               target="_blank"
             >
               <TelegramIcon

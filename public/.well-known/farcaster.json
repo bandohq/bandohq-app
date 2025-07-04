@@ -10,20 +10,28 @@
       "iconUrl": "https://app.bando.cool/appicon.png",
       "homeUrl": "https://app.bando.cool/",
       "buttonTitle": "Start",
-      "splashImageUrl": "https://app.bando.cool/appicon.png",
-      "splashBackgroundColor": "#FFFFFF",
+      "splashImageUrl": "https://app.bando.cool/spinnerBlack.gif",
+      "splashBackgroundColor": "#53C5A5",
       "subtitle": "Spend your crypto",
-      "description": "Enable your users to spend in over 100 countries and over 6000 products",
+      "description": "Pay with crypto at Amazon, Uber, Airbnb and thousands of stores. Seamless, secure, instant",
+      "primaryCategory": "shopping",
       "tags": [
         "spend",
         "shop",
         "buy",
-        "bando"
+        "offramp",
+        "giftcard"
+      ],
+      "screenshotUrls": [
+        "https://app.bando.cool/screenshot1.png",
+        "https://app.bando.cool/screenshot2.png",
+        "https://app.bando.cool/screenshot3.png",
+        "https://app.bando.cool/screenshot4.png"
       ],
       "heroImageUrl": "https://app.bando.cool/opengraph-image.png",
       "tagline": "Spend your crypto",
       "ogTitle": "Bando",
-      "ogDescription": "Enable your users to spend in over 100 countries and over 6000 products",
+      "ogDescription": "Pay with crypto at Amazon, Uber, Airbnb and thousands of stores. Seamless, secure, instant",
       "ogImageUrl": "https://app.bando.cool/opengraph-image.png"
     }
 }
