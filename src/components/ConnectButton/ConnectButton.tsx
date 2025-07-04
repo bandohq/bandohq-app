@@ -14,7 +14,7 @@ export const ConnectButton = () => {
   const isInMiniApp = useIsFarcaster();
   const { t } = useTranslation("wallet");
   const isWorldWallet = useIsWorldApp();
-  const { address, username } = useWorldWallet("1234567890");
+  const { username } = useWorldWallet();
 
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
@@ -94,9 +94,18 @@ export const ConnectButton = () => {
 
               if (isWorldWallet) {
                 return (
-                  <Button variant="contained" size="small">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => {}} // onClick vacío para que no haga nada
+                    sx={{
+                      borderRadius: "16px",
+                      bgcolor: theme.palette.ink.i900,
+                      textTransform: "none",
+                      color: theme.palette.ink.i100,
+                    }}
+                  >
                     {username}
-                    {address}
                   </Button>
                 );
               }
