@@ -6,7 +6,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import * as Sentry from "@sentry/react";
 import { sdk } from "@farcaster/frame-sdk";
 import { useEffect } from "react";
-import { useIsFarcaster } from "@hooks/walletDetect";
+import { useIsFarcaster, useIsWorldApp } from "@hooks/walletDetect";
 
 Sentry.init({
   dsn: "https://24644db236e19c7aa4974451d9cc5101@o4506577784602624.ingest.us.sentry.io/4509209195905024",
@@ -17,7 +17,7 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
     Sentry.captureConsoleIntegration({
-      levels: ["error"],
+      levels: ["error", "log"],
     }),
   ],
   // Tracing
@@ -37,6 +37,7 @@ function App() {
    * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
    **/
   const isMiniApp = useIsFarcaster();
+
   const initializeFarcasterFrame = async () => {
     await sdk.actions.ready();
     if (isMiniApp) {
@@ -44,6 +45,7 @@ function App() {
     }
   };
 
+  // check if integration are available
   useEffect(() => {
     initializeFarcasterFrame();
   }, []);
