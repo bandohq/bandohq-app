@@ -6,9 +6,9 @@ import { ThemeProvider } from './context/ThemeContext';
 import * as Sentry from "@sentry/react";
 import { sdk } from "@farcaster/frame-sdk";
 import { useEffect } from "react";
-import { useIsFarcaster, useIsWorldApp } from "@hooks/walletDetect";
+import { useIsFarcaster } from "@hooks/walletDetect";
 
-Sentry.init({
+/*Sentry.init({
   dsn: "https://24644db236e19c7aa4974451d9cc5101@o4506577784602624.ingest.us.sentry.io/4509209195905024",
   // Setting this option to true will send default PII data to Sentry.
   // For example, automatic IP address collection on events
@@ -27,7 +27,7 @@ Sentry.init({
   // Session Replay
   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
-});
+});*/
 
 function App() {
   /**
