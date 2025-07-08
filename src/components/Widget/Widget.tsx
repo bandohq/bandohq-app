@@ -59,6 +59,8 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
+      {isWorldApp && <p>World App</p>}
+
       <BandoWidget integrator={integrator} config={config} />
     </>
   );
