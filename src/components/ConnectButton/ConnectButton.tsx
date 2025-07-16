@@ -5,15 +5,21 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
 import { useAccount, useConnect } from "wagmi";
+import { useIsWorldApp } from "@hooks/walletDetect";
+import { useWorldWallet } from "@hooks/useWorldWallet";
 
 export const ConnectButton = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isInMiniApp = useIsFarcaster();
   const { t } = useTranslation("wallet");
+  const isWorldWallet = useIsWorldApp();
+  const { username } = useWorldWallet();
 
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
+
+  if (isWorldWallet) null;
 
   if (isInMiniApp && !isConnected) {
     return (
