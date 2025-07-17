@@ -10,6 +10,7 @@ import {
   useIsWorldApp,
   useMiniPayDetection,
 } from "@hooks/walletDetect";
+import { MiniKit } from "@worldcoin/minikit-js";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
@@ -37,6 +38,7 @@ export const Widget = () => {
   const config = {
     buildUrl: true,
     appearance: theme.palette.mode,
+    transactionProvider: MiniKit,
     walletConfig: {
       onConnect: () => {
         openConnectModal?.();
