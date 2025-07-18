@@ -13,7 +13,7 @@
       "splashImageUrl": "https://app.bando.cool/spinnerBlack.gif",
       "splashBackgroundColor": "#53C5A5",
       "subtitle": "Spend your crypto",
-      "description": "Pay with crypto at Amazon, Uber, Airbnb and thousands of stores. Seamless, secure, instant",
+      "description": "Buy giftcards and vouchers of your favorite brands with any token",
       "primaryCategory": "shopping",
       "tags": [
         "spend",
@@ -31,7 +31,7 @@
       "heroImageUrl": "https://app.bando.cool/opengraph-image.png",
       "tagline": "Spend your crypto",
       "ogTitle": "Bando",
-      "ogDescription": "Pay with crypto at Amazon, Uber, Airbnb and thousands of stores. Seamless, secure, instant",
+      "ogDescription": "Buy giftcards and vouchers of your favorite brands with any token",
       "ogImageUrl": "https://app.bando.cool/opengraph-image.png"
     }
 }
