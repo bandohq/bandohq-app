@@ -25,12 +25,12 @@ export const Widget = () => {
 
   const integrator = isMiniPay
     ? "opera-minipay-app"
+    : isCoinbase // must always be before isMiniApp
+    ? "coinbase-app"
     : isMiniApp
     ? "farcaster-app"
     : isBinance
     ? "binance-app"
-    : isCoinbase
-    ? "coinbase-app"
     : "bando-app";
 
   // we are carefully opening countries on the minipay opera wallet.
