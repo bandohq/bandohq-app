@@ -178,10 +178,10 @@
   resolved "https://registry.yarnpkg.com/@bandohq/contract-abis/-/contract-abis-1.2.0.tgz#2568a9d027b0eca4cc9859f2602923845c665a18"
   integrity sha512-vFFBc+tdBoix62TaKH6NQ2YVI15jJPOoGH0BZiKwXGvFEtdIGk9rt1+q9E9MhkUZjL4Ppy4X31EjAURPjFuYKA==
 
-"@bandohq/widget@0.1.36-beta.11":
-  version "0.1.36-beta.11"
-  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.36-beta.11.tgz#cb6e4d2807887804f797b136b887f19ba7b0813a"
-  integrity sha512-vBkyWUWH8IVKIuCLTwpwpmyFzTdIuOcsj4ZU27N28yXtLGo8SrxWvH2hSqtSqasUuPhpMSWW8teUUuWNiOyX2g==
+"@bandohq/widget@0.1.36-beta.12":
+  version "0.1.36-beta.12"
+  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.36-beta.12.tgz#d57e808b1126967162837ad11cc5b85fc5f1983d"
+  integrity sha512-+x2lG142hy03HY3mL6HXlP+RwPesr+lADHujrw3Qa0fbTr6a1M3X22DvbPMm6hYIDH01LYl63sU73JHci/68Iw==
   dependencies:
     "@bandohq/contract-abis" "^1.2.0"
     "@bigmi/client" "^0.0.4"
