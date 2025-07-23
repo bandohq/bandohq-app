@@ -19,8 +19,6 @@ export const Widget = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isBinance = useIsBinance();
-  const { switchChain } = useSwitchChain();
-  const chainId = useChainId();
   const isCoinbase = useIsCoinbase();
 
   const integrator = isMiniPay
