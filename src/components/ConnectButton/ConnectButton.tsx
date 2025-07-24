@@ -20,7 +20,25 @@ export const ConnectButton = () => {
   const { connect, connectors } = useConnect();
 
   if (isWorldWallet) {
-    return null;
+    return (
+      <Button
+        sx={{
+          fontSize: { xs: 12, sm: "1rem" },
+          backgroundColor: "transparent",
+          color: theme.palette.ink.i900,
+          boxShadow: "none",
+          px: { xs: 0.5, sm: 1, md: 2 },
+          py: { xs: 0.2, sm: 0.5, md: 1 },
+          minWidth: { xs: 0, sm: 0, md: 36 },
+          "&:hover": {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+          },
+        }}
+      >
+        {username}
+      </Button>
+    );
   }
 
   if (isInMiniApp && !isConnected) {
