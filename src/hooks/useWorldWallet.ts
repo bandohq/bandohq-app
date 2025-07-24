@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MiniKit } from "@worldcoin/minikit-js";
-import { generateUUID } from "utils/generateUUID";
+import { generateUUID } from "../utils/generateUUID";
 
 type WorldWallet = {
   username: string | null;
