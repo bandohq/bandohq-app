@@ -19,7 +19,9 @@ export const ConnectButton = () => {
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
 
-  if (isWorldWallet) null;
+  if (isWorldWallet) {
+    return null;
+  }
 
   if (isInMiniApp && !isConnected) {
     return (
