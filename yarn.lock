@@ -178,6 +178,7 @@
   resolved "https://registry.yarnpkg.com/@bandohq/contract-abis/-/contract-abis-1.2.0.tgz#2568a9d027b0eca4cc9859f2602923845c665a18"
   integrity sha512-vFFBc+tdBoix62TaKH6NQ2YVI15jJPOoGH0BZiKwXGvFEtdIGk9rt1+q9E9MhkUZjL4Ppy4X31EjAURPjFuYKA==
 
+
 "@bandohq/widget@0.1.36-beta.22":
   version "0.1.36-beta.22"
   resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.36-beta.22.tgz#c01199a8f97e6a0e5889ae62b05e13b91f7a75f3"
