@@ -17,7 +17,7 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
     Sentry.captureConsoleIntegration({
-      levels: ["error"],
+      levels: ["log", "error"],
     }),
   ],
   // Tracing
@@ -37,6 +37,7 @@ function App() {
    * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
    **/
   const isMiniApp = useIsFarcaster();
+
   const initializeFarcasterFrame = async () => {
     await sdk.actions.ready();
     if (isMiniApp) {
@@ -44,6 +45,7 @@ function App() {
     }
   };
 
+  // check if integration are available
   useEffect(() => {
     initializeFarcasterFrame();
   }, []);

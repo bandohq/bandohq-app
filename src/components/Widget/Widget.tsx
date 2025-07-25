@@ -3,14 +3,14 @@ import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
 import { useTheme } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { useSwitchChain, useChainId } from "wagmi";
-import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import {
   useIsBinance,
   useIsCoinbase,
   useIsFarcaster,
+  useIsWorldApp,
   useMiniPayDetection,
 } from "@hooks/walletDetect";
+import { MiniKit } from "@worldcoin/minikit-js";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
@@ -19,9 +19,8 @@ export const Widget = () => {
   const theme = useTheme();
   const { isMiniPay } = useMiniPayDetection();
   const isBinance = useIsBinance();
-  const { switchChain } = useSwitchChain();
-  const chainId = useChainId();
   const isCoinbase = useIsCoinbase();
+  const isWorldApp = useIsWorldApp();
 
   const integrator = isMiniPay
     ? "opera-minipay-app"
@@ -39,6 +38,7 @@ export const Widget = () => {
   const config = {
     buildUrl: true,
     appearance: theme.palette.mode,
+    transactionProvider: MiniKit,
     walletConfig: {
       onConnect: () => {
         openConnectModal?.();
@@ -61,6 +61,8 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
+      {isWorldApp && <p>World App</p>}
+
       <BandoWidget integrator={integrator} config={config} />
     </>
   );
