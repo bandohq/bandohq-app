@@ -89,22 +89,11 @@ export const useIsCoinbase = () => {
 
     const detect = async () => {
       try {
-        // make sure we are in a mini app
-        if (!(await sdk.isInMiniApp())) return;
+        const isCoinbase =
+          (await sdk.isInMiniApp()) &&
+          (await sdk.context)?.client?.clientFid === 309857;
 
-        // get the provider
-        const eth =
-          "getEthereumProvider" in sdk.wallet
-            ? await (sdk.wallet as any).getEthereumProvider()
-            : (sdk.wallet as any).ethProvider ?? (window as any).ethereum;
-
-        // check if the provider is Coinbase Wallet
-        const isCb =
-          eth?.isCoinbaseWallet ||
-          eth?.isCoinbase ||
-          eth?.providers?.some((p: any) => p.isCoinbaseWallet || p.isCoinbase);
-
-        if (!cancelled) setIsCoinbase(Boolean(isCb));
+        if (!cancelled) setIsCoinbase(Boolean(isCoinbase));
       } catch {
         if (!cancelled) setIsCoinbase(false);
       }
