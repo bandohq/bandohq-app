@@ -15,7 +15,6 @@ Sentry.init({
   sendDefaultPii: true,
   integrations: [
     Sentry.browserTracingIntegration(),
-    Sentry.replayIntegration(),
     Sentry.captureConsoleIntegration({
       levels: ["error"],
     }),
