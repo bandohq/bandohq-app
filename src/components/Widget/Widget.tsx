@@ -7,7 +7,6 @@ import {
   useIsBinance,
   useIsCoinbase,
   useIsFarcaster,
-  useIsWorldApp,
   useMiniPayDetection,
 } from "@hooks/walletDetect";
 import { MiniKit } from "@worldcoin/minikit-js";
@@ -20,7 +19,6 @@ export const Widget = () => {
   const { isMiniPay } = useMiniPayDetection();
   const isBinance = useIsBinance();
   const isCoinbase = useIsCoinbase();
-  const isWorldApp = useIsWorldApp();
 
   const integrator = isMiniPay
     ? "opera-minipay-app"
@@ -61,8 +59,6 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
-      {isWorldApp && <p>World App</p>}
-
       <BandoWidget integrator={integrator} config={config} />
     </>
   );
