@@ -82,7 +82,7 @@ export const WalletConnectorProvider = ({ children }) => {
           acc[chain.id] = http();
           return acc;
         }, {}),
-        autoConnect: !isWorldWallet,
+        autoConnect: true,
       });
 
       setConfig(wagmiConfig);
