@@ -11,6 +11,7 @@ export const useWorldWallet = (): WorldWallet => {
   const [username, setUsername] = useState<string | null>(null);
   const [address, setAddress] = useState<string | null>(null);
 
+  /*
   useEffect(() => {
     const run = async () => {
       const inWorld = MiniKit.isInstalled();
@@ -34,6 +35,7 @@ export const useWorldWallet = (): WorldWallet => {
 
     run();
   }, []);
+  */
 
   return { username, address };
 };
