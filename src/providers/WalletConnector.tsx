@@ -32,7 +32,6 @@ const connectors = connectorsForWallets(
     {
       groupName: "Recommended",
       wallets: [
-        walletConnectWallet,
         binanceWallet,
         zerionWallet,
         phantomWallet,
@@ -40,6 +39,7 @@ const connectors = connectorsForWallets(
         rainbowWallet,
         metaMaskWallet,
         safeWallet,
+        walletConnectWallet,
         injectedWallet,
       ],
     },
@@ -75,7 +75,9 @@ export const WalletConnectorProvider = ({ children }) => {
       });
 
       const wagmiConfig = createConfig({
-        connectors: [farcasterFrameConnector, ...connectors],
+        connectors: isWorldWallet
+          ? []
+          : [farcasterFrameConnector, ...connectors],
         // @ts-ignore format based on viem docs
         chains: [...chainDefinitions],
         transports: chainDefinitions.reduce((acc, chain) => {
