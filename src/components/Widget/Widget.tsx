@@ -8,6 +8,7 @@ import {
   useIsCoinbase,
   useIsFarcaster,
   useMiniPayDetection,
+  useIsWorldApp,
 } from "@hooks/walletDetect";
 import { MiniKit } from "@worldcoin/minikit-js";
 
@@ -19,8 +20,11 @@ export const Widget = () => {
   const { isMiniPay } = useMiniPayDetection();
   const isBinance = useIsBinance();
   const isCoinbase = useIsCoinbase();
+  const isWorldApp = useIsWorldApp();
 
-  const integrator = isMiniPay
+  const integrator = isWorldApp
+    ? "world-app"
+    : isMiniPay
     ? "opera-minipay-app"
     : isCoinbase // must always be before isMiniApp
     ? "coinbase-app"
