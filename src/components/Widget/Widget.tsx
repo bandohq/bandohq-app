@@ -37,11 +37,11 @@ export const Widget = () => {
     buildUrl: true,
     appearance: theme.palette.mode,
     transactionProvider: MiniKit,
-    // walletConfig: {
-    //   onConnect: () => {
-    //     openConnectModal?.();
-    //   },
-    // },
+    walletConfig: {
+      onConnect: () => {
+        openConnectModal?.();
+      },
+    },
     languages: {
       default: i18n.language,
       supported: ["en", "es"],
