@@ -63,7 +63,6 @@ export const Widget = () => {
   } as Partial<WidgetConfig>;
   return (
     <>
-      {integrator}
       <BandoWidget integrator={integrator} config={config} />
     </>
   );
