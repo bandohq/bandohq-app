@@ -11,6 +11,7 @@ import {
   useIsWorldApp,
 } from "@hooks/walletDetect";
 import { MiniKit } from "@worldcoin/minikit-js";
+import { useWorldWallet } from "@hooks/useWorldWallet";
 
 export const Widget = () => {
   const { i18n } = useTranslation();
@@ -21,6 +22,9 @@ export const Widget = () => {
   const isBinance = useIsBinance();
   const isCoinbase = useIsCoinbase();
   const isWorldApp = useIsWorldApp();
+  const { isMounted } = useWorldWallet();
+
+  const shouldShowWidget = isWorldApp ? isMounted : true;
 
   const integrator = isWorldApp
     ? "world-app"
@@ -61,9 +65,12 @@ export const Widget = () => {
       },
     },
   } as Partial<WidgetConfig>;
+
   return (
     <>
-      <BandoWidget integrator={integrator} config={config} />
+      {shouldShowWidget && (
+        <BandoWidget integrator={integrator} config={config} />
+      )}
     </>
   );
 };

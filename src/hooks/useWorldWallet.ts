@@ -5,11 +5,13 @@ import { generateUUID } from "../utils/generateUUID";
 type WorldWallet = {
   username: string | null;
   address: string | null;
+  isMounted: boolean;
 };
 
 export const useWorldWallet = (): WorldWallet => {
   const [username, setUsername] = useState<string | null>(null);
   const [address, setAddress] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const run = async () => {
@@ -27,6 +29,7 @@ export const useWorldWallet = (): WorldWallet => {
         if (finalPayload.status === "success") {
           setAddress(finalPayload.address);
         }
+        setIsMounted(true);
       } catch (e) {
         console.warn("walletAuth error:", e);
       }
@@ -35,5 +38,5 @@ export const useWorldWallet = (): WorldWallet => {
     run();
   }, []);
 
-  return { username, address };
+  return { username, address, isMounted };
 };
