@@ -55,18 +55,16 @@ export interface Chain {
   protocolContracts: ProtocolContracts;
 }
 
-export function transformToChainConfig(
-  chain: SimplifiedChain,
-  nativeToken: NativeTokenCatalog
-): Chain {
+export function transformToChainConfig(chain, nativeToken: any): Chain {
+  console.log(nativeToken);
   return {
     id: chain.chainId,
     name: chain.name,
     network: chain.key,
     nativeCurrency: {
-      name: nativeToken.native_token.name,
-      symbol: nativeToken.native_token.symbol,
-      decimals: nativeToken.native_token.decimals,
+      name: nativeToken.name,
+      symbol: nativeToken.symbol,
+      decimals: nativeToken.decimals,
     },
     rpcUrls: {
       default: { http: [chain.rpcUrl] },
@@ -81,3 +79,4 @@ export function transformToChainConfig(
     protocolContracts: chain.protocolContracts,
   };
 }
+
