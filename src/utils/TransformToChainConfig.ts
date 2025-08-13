@@ -56,7 +56,6 @@ export interface Chain {
 }
 
 export function transformToChainConfig(chain, nativeToken: any): Chain {
-  console.log(nativeToken);
   return {
     id: chain.chainId,
     name: chain.name,
