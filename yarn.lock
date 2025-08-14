@@ -178,10 +178,10 @@
   resolved "https://registry.yarnpkg.com/@bandohq/contract-abis/-/contract-abis-1.2.0.tgz#2568a9d027b0eca4cc9859f2602923845c665a18"
   integrity sha512-vFFBc+tdBoix62TaKH6NQ2YVI15jJPOoGH0BZiKwXGvFEtdIGk9rt1+q9E9MhkUZjL4Ppy4X31EjAURPjFuYKA==
 
-"@bandohq/widget@0.1.36-beta.57":
-  version "0.1.36-beta.57"
-  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.36-beta.57.tgz#47265fdfc890f48f945178bd40f6354fac25575b"
-  integrity sha512-szd5Jsfj3Xb1erpEcLzM1YO2+kjQUxMt2UawfXrj88YAeREvCvP0bCkXhaw+LaUKfAMC8my4DQxtBR8Us6DNXA==
+"@bandohq/widget@0.1.44-beta.5":
+  version "0.1.44-beta.5"
+  resolved "https://registry.yarnpkg.com/@bandohq/widget/-/widget-0.1.44-beta.5.tgz#3a138d2ab49a6560a23d9f8a95385d528bd85283"
+  integrity sha512-8piz6JzmhCqsMvvEOLvbuxaYIvuSkm3SgJ903XY1ZmxLlhMHpO4yrni7dDtvvCOwrtcoLZZJNaCC1vvF8mWNxg==
   dependencies:
     "@bandohq/contract-abis" "^1.2.0"
     "@bigmi/client" "^0.0.4"
@@ -211,8 +211,6 @@
     vite-plugin-dts "^4.5.0"
     web3 "^4.16.0"
     zustand "^5.0.0-rc.2"
-  optionalDependencies:
-    "@worldcoin/minikit-js" "^1.9.0"
 
 "@bigmi/client@^0.0.4":
   version "0.0.4"
@@ -2715,7 +2713,7 @@
     ox "^0.1.0"
     zustand "^4.5"
 
-"@worldcoin/minikit-js@^1.9.0", "@worldcoin/minikit-js@^1.9.6":
+"@worldcoin/minikit-js@^1.9.6":
   version "1.9.6"
   resolved "https://registry.yarnpkg.com/@worldcoin/minikit-js/-/minikit-js-1.9.6.tgz#c653cf00bbbb6c9fe477e81956932aa4c6ebd797"
   integrity sha512-nKPj9hQngHV0bD4/SD/XZmNAYv/zfZjptPjnuzIWouRR8AQHFpdkCPIw03QujhBG+3kUwUpsBAgYPwEk4vj2dw==
