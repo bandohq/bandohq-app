@@ -24,6 +24,7 @@ export const Widget = () => {
   const isWorldApp = useIsWorldApp();
   const { isMounted } = useWorldWallet();
 
+  // if world app is mounted, show the widget
   const shouldShowWidget = isWorldApp ? isMounted : true;
 
   const integrator = isWorldApp
