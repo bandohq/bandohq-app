@@ -44,7 +44,6 @@ function App() {
     }
   };
 
-  // check if integration are available
   useEffect(() => {
     initializeFarcasterFrame();
   }, []);

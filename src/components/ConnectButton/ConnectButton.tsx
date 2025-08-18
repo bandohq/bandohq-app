@@ -6,7 +6,6 @@ import { useTheme } from "@mui/material/styles";
 import { useMiniPayDetection, useIsFarcaster } from "../../hooks/walletDetect";
 import { useAccount, useConnect } from "wagmi";
 import { useIsWorldApp } from "@hooks/walletDetect";
-import { useWorldWallet } from "@hooks/useWorldWallet";
 
 export const ConnectButton = () => {
   const theme = useTheme();
@@ -14,31 +13,12 @@ export const ConnectButton = () => {
   const isInMiniApp = useIsFarcaster();
   const { t } = useTranslation("wallet");
   const isWorldWallet = useIsWorldApp();
-  const { username } = useWorldWallet();
 
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
 
   if (isWorldWallet) {
-    return (
-      <Button
-        sx={{
-          fontSize: { xs: 12, sm: "1rem" },
-          backgroundColor: "transparent",
-          color: theme.palette.ink.i900,
-          boxShadow: "none",
-          px: { xs: 0.5, sm: 1, md: 2 },
-          py: { xs: 0.2, sm: 0.5, md: 1 },
-          minWidth: { xs: 0, sm: 0, md: 36 },
-          "&:hover": {
-            backgroundColor: "transparent",
-            boxShadow: "none",
-          },
-        }}
-      >
-        {username}
-      </Button>
-    );
+    return null;
   }
 
   if (isInMiniApp && !isConnected) {
