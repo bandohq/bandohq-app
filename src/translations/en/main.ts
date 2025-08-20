@@ -19,7 +19,7 @@ export default {
     docs: "Docs",
     documentation: "Documentation",
     apiReference: "API Reference",
-    becomePartner: "Become a Partner",
+    becomePartner: "Contact sales",
     support: "Support",
     contactUs: "Contact us",
     legalPrivacy: "Legal & Privacy",

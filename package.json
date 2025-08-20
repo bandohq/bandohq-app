@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bandohq/widget": "0.1.44-beta.12",
+    "@bandohq/widget": "^0.1.47",
     "@bigmi/react": "^0.1.1",
     "@farcaster/frame-sdk": "^0.0.39",
     "@farcaster/frame-wagmi-connector": "^0.0.27",

@@ -68,10 +68,7 @@ export const WalletConnectorProvider = ({ children }) => {
       const activeNetworks = await fetchActiveChains();
 
       const chainDefinitions = activeNetworks.map((network) => {
-        const nativeToken = nativeTokenCatalog.find(
-          (token) => token.key === network.key
-        );
-        return transformToChainConfig(network, nativeToken);
+        return transformToChainConfig(network, network.nativeToken);
       });
 
       const wagmiConfig = createConfig({

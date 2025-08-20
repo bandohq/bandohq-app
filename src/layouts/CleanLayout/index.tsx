@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react';
 import Navbar from '@components/Navbar';
 import SimpleFooter from '@components/SimpleFooter';
 import theme from '@config/theme';
+import { PromoBanner } from "@components/PromoBanner/PromoBanner";
 
 const LayoutContainer = styled('div')(({ theme }) => ({
   width: '100%',
@@ -40,7 +41,8 @@ export type CleanLayoutProps = PropsWithChildren;
 export default function CleanLayout({ children }: CleanLayoutProps) {
   return (
     <LayoutContainer>
-      <Navbar/>
+      <Navbar />
+      <PromoBanner />
       <Container>
         <ContentContainer>{children}</ContentContainer>
       </Container>
