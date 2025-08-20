@@ -36,6 +36,7 @@ function App() {
    * https://miniapps.farcaster.xyz/docs/guides/loading#calling-ready
    **/
   const isMiniApp = useIsFarcaster();
+
   const initializeFarcasterFrame = async () => {
     await sdk.actions.ready();
     if (isMiniApp) {

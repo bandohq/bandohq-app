@@ -24,6 +24,7 @@ import { BANDO_API_ROUTE } from "../utils/consts";
 import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
 import { useTheme } from "@mui/material/styles";
+import { useIsWorldApp } from "@hooks/walletDetect";
 const queryClient = new QueryClient();
 
 const connectors = connectorsForWallets(
@@ -31,7 +32,6 @@ const connectors = connectorsForWallets(
     {
       groupName: "Recommended",
       wallets: [
-        walletConnectWallet,
         binanceWallet,
         zerionWallet,
         phantomWallet,
@@ -39,6 +39,7 @@ const connectors = connectorsForWallets(
         rainbowWallet,
         metaMaskWallet,
         safeWallet,
+        walletConnectWallet,
         injectedWallet,
       ],
     },
@@ -53,6 +54,7 @@ const farcasterFrameConnector = farcasterFrame();
 
 export const WalletConnectorProvider = ({ children }) => {
   const [config, setConfig] = useState(null);
+  const isWorldWallet = useIsWorldApp();
   const theme = useTheme();
   const fetchActiveChains = async () => {
     const response = await fetch(`${BANDO_API_ROUTE}networks/`);
@@ -70,14 +72,16 @@ export const WalletConnectorProvider = ({ children }) => {
       });
 
       const wagmiConfig = createConfig({
-        connectors: [farcasterFrameConnector, ...connectors],
+        connectors: isWorldWallet
+          ? []
+          : [farcasterFrameConnector, ...connectors],
         // @ts-ignore format based on viem docs
         chains: [...chainDefinitions],
         transports: chainDefinitions.reduce((acc, chain) => {
           acc[chain.id] = http();
           return acc;
         }, {}),
-        autoConnect: true,
+        autoConnect: !isWorldWallet,
       });
 
       setConfig(wagmiConfig);

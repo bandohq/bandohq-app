@@ -9,6 +9,7 @@ import {
   useIsCoinbase,
 } from "../../hooks/walletDetect";
 import { useAccount, useConnect } from "wagmi";
+import { useIsWorldApp } from "@hooks/walletDetect";
 
 export const ConnectButton = () => {
   const theme = useTheme();
@@ -16,9 +17,14 @@ export const ConnectButton = () => {
   const isInMiniApp = useIsFarcaster();
   const isCoinbase = useIsCoinbase();
   const { t } = useTranslation("wallet");
+  const isWorldWallet = useIsWorldApp();
 
   const { isConnected } = useAccount();
   const { connect, connectors } = useConnect();
+
+  if (isWorldWallet) {
+    return null;
+  }
 
   if (isInMiniApp && !isConnected) {
     return (
