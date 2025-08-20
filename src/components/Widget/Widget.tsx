@@ -40,7 +40,7 @@ export const Widget = () => {
     : "bando-app";
 
   // we are carefully opening countries on the minipay opera wallet.
-  const miniPayCountries = ["US", "MX", "NG", "GH", "KE", "ZA", "PH"];
+  const miniPayCountries = ["US", "MX", "NG", "GH", "KE", "ZA", "PH", "IN"];
 
   const config = {
     buildUrl: true,
