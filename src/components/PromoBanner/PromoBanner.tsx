@@ -27,7 +27,7 @@ export const PromoBanner = () => {
             flex: { md: 1 },
           }}
         >
-          Get up to 15% cashback on every purchase!
+          Get up to 10% cashback on every purchase!
         </Typography>
         <Link
           href="https://docs.google.com/document/d/1hphu6sSiVjRxyYWjdcej0wUtSmQ0XJHNnX4FAsWRrBk/edit?usp=sharing"
@@ -41,7 +41,7 @@ export const PromoBanner = () => {
             fontSize: 12,
           }}
         >
-          Check terms and conditions
+          Learn more
         </Link>
       </Box>
     </Box>
