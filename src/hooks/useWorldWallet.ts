@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MiniKit } from "@worldcoin/minikit-js";
 import { generateUUID } from "../utils/generateUUID";
+import { useIsWorldApp } from "./walletDetect";
 
 type WorldWallet = {
   username: string | null;
@@ -12,8 +13,15 @@ export const useWorldWallet = (): WorldWallet => {
   const [username, setUsername] = useState<string | null>(null);
   const [address, setAddress] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const isWorldApp = useIsWorldApp();
 
   useEffect(() => {
+    console.log("isWorldApp", isWorldApp);
+    // If not in World App, don't run the wallet logic
+    if (!isWorldApp) {
+      return;
+    }
+
     const run = async () => {
       const inWorld = MiniKit.isInstalled();
 
@@ -36,7 +44,7 @@ export const useWorldWallet = (): WorldWallet => {
     };
 
     run();
-  }, []);
+  }, [isWorldApp]);
 
   return { username, address, isMounted };
 };

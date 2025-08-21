@@ -148,6 +148,7 @@ export const useIsBinance = () => {
 
 /**
  * A hook that detects if the application is running inside World App.
+ * Also checks for the "isInWorld" query parameter - if it doesn't exist or doesn't equal "1", returns false.
  *
  * @returns A boolean indicating if the app is running inside World App
  */
@@ -157,8 +158,24 @@ export const useIsWorldApp = () => {
   useEffect(() => {
     const checkWorldApp = async () => {
       try {
-        const isInstalled = MiniKit.isInstalled();
-        setIsWorldApp(isInstalled);
+        // Check query parameters first
+        const urlParams = new URLSearchParams(window.location.search);
+        const isInWorldParam = urlParams.get("isInWorld");
+
+        // If isInWorld parameter doesn't exist or doesn't equal "1", return false immediately
+        if (isInWorldParam !== "1") {
+          setIsWorldApp(false);
+          return;
+        }
+
+        // Only check MiniKit.isInstalled() if we have the correct query parameter
+        try {
+          const isInstalled = MiniKit.isInstalled();
+          setIsWorldApp(isInstalled);
+        } catch (error) {
+          // If MiniKit.isInstalled() throws an error, we're not in World App
+          setIsWorldApp(false);
+        }
       } catch (error) {
         setIsWorldApp(false);
       }

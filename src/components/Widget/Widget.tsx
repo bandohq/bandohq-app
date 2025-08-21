@@ -10,7 +10,6 @@ import {
   useMiniPayDetection,
   useIsWorldApp,
 } from "@hooks/walletDetect";
-import { MiniKit } from "@worldcoin/minikit-js";
 import { useWorldWallet } from "@hooks/useWorldWallet";
 
 export const Widget = () => {
@@ -45,7 +44,13 @@ export const Widget = () => {
   const config = {
     buildUrl: true,
     appearance: theme.palette.mode,
-    transactionProvider: MiniKit,
+    transactionProvider: isWorldApp
+      ? (() => {
+          // Only import MiniKit when we're actually in World App
+          const { MiniKit } = require("@worldcoin/minikit-js");
+          return MiniKit;
+        })()
+      : undefined,
     walletConfig: {
       onConnect: () => {
         openConnectModal?.();
