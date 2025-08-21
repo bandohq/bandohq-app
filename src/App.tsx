@@ -29,34 +29,6 @@ Sentry.init({
   ignoreErrors: [
     "MiniKit is not installed. Make sure you're running the application inside of World App",
   ],
-  beforeSend: (event, hint) => {
-    const msg =
-      (hint?.originalException instanceof Error &&
-        hint.originalException.message) ||
-      event.message ||
-      "";
-
-    if (
-      typeof msg === "string" &&
-      (/MiniKit is not installed/i.test(msg) ||
-        /Make sure.*World App/i.test(msg))
-    ) {
-      return null; // ignore the event
-    }
-
-    // If the event came from console.error without exception:
-    const logger = (event as any).logger;
-    if (logger === "console" && typeof event.message === "string") {
-      if (
-        /MiniKit is not installed/i.test(event.message) ||
-        /Make sure.*World App/i.test(event.message)
-      ) {
-        return null;
-      }
-    }
-
-    return event;
-  },
 });
 
 function App() {
