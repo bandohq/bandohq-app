@@ -30,7 +30,7 @@ export const PromoBanner = () => {
           Get up to 10% cashback on every purchase!
         </Typography>
         <Link
-          href="https://docs.google.com/document/d/1hphu6sSiVjRxyYWjdcej0wUtSmQ0XJHNnX4FAsWRrBk/edit?usp=sharing"
+          href="https://bando.cool/blog/bando-10-cashback-is-back?utm_source=blog&utm_medium=app&utm_campaign=cashback&utm_content=tc"
           target="_blank"
           rel="noopener noreferrer"
           color="warning.contrastText"
