@@ -1,5 +1,3 @@
-import { NativeTokenCatalog } from "./nativeTokenCatalog";
-
 export type Address = `0x${string}`;
 
 interface ProtocolContracts {
@@ -78,4 +76,3 @@ export function transformToChainConfig(chain, nativeToken: any): Chain {
     protocolContracts: chain.protocolContracts,
   };
 }
-
