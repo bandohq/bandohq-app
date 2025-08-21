@@ -21,7 +21,6 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
 import { BANDO_API_ROUTE } from "../utils/consts";
-import nativeTokenCatalog from "../utils/nativeTokenCatalog";
 import { transformToChainConfig } from "../utils/TransformToChainConfig";
 import { useTheme } from "@mui/material/styles";
 import { useIsWorldApp } from "@hooks/walletDetect";
