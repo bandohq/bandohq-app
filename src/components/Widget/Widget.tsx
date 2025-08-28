@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BandoWidget, WidgetConfig } from "@bandohq/widget";
-import { useTheme } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import {
   useIsBinance,
@@ -69,9 +69,17 @@ export const Widget = () => {
 
   return (
     <>
-      {shouldShowWidget && (
+      <Typography variant="h4" align="center" gutterBottom>
+        🚧 Under maintenance
+      </Typography>
+      <Typography variant="subtitle1" align="center" color="text.secondary">
+        We will be back soon...
+      </Typography>
+      {/* 
+      shouldShowWidget && (
         <BandoWidget integrator={integrator} config={config} />
-      )}
+      ) 
+      */}
     </>
   );
 };
