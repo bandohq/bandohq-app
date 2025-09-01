@@ -69,17 +69,9 @@ export const Widget = () => {
 
   return (
     <>
-      <Typography variant="h4" align="center" gutterBottom>
-        🚧 Under maintenance
-      </Typography>
-      <Typography variant="subtitle1" align="center" color="text.secondary">
-        We will be back soon...
-      </Typography>
-      {/* 
-      shouldShowWidget && (
+      {shouldShowWidget && (
         <BandoWidget integrator={integrator} config={config} />
-      ) 
-      */}
+      )}
     </>
   );
 };
