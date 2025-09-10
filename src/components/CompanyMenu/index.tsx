@@ -102,7 +102,7 @@ export default function CompanyMenu({ open, setOpen, anchorEl, setAnchorEl }: Co
               
               {/* Social icons */}
               <Box style={{ display: "flex", padding: "8px 12px", gap: "16px" }}>
-                <IconButton size="small" style={{ padding: "6px" }} href="https://github.com/bandohq" target="_blank">
+                <IconButton size="small" style={{ padding: "6px" }} href="https://github.com/bandohq/foo" target="_blank">
                   <Github style={{ width: "20px", height: "20px", color: theme.palette.text.primary }} />
                 </IconButton>
                 <IconButton size="small" style={{ padding: "6px" }} href="https://x.com/bandocool" target="_blank">
