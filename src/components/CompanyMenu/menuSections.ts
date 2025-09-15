@@ -8,7 +8,15 @@ interface MenuSection {
 
 export const menuSections = (t: TFunction<"main", undefined>): MenuSection[] => [
   {
-    title: t("main:main.docs", "Docs"),
+    title: t("main.about", "About"),
+    id: "about",
+    items: [
+      { label: t("main.product", "Product"), href: "https://bando.cool" },
+      { label: t("main.blog", "Blog"), href: "https://bando.cool/blog" },
+    ],
+  },
+  {
+    title: t("main:main.docs", "For Developers"),
     id: "docs",
     items: [
       {
@@ -23,14 +31,6 @@ export const menuSections = (t: TFunction<"main", undefined>): MenuSection[] => 
         label: t("main:main.becomePartner", "Contact sales"),
         href: "https://tally.so/r/mexLqk",
       },
-    ],
-  },
-  {
-    title: t("main.about", "About"),
-    id: "about",
-    items: [
-      { label: t("main.product", "Product"), href: "https://bando.cool" },
-      { label: t("main.blog", "Blog"), href: "https://bando.cool/blog" },
     ],
   },
   {
