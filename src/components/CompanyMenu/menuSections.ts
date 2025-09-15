@@ -8,6 +8,24 @@ interface MenuSection {
 
 export const menuSections = (t: TFunction<"main", undefined>): MenuSection[] => [
   {
+    title: t("main:main.docs", "Docs"),
+    id: "docs",
+    items: [
+      {
+        label: t("main:main.documentation", "Documentation"),
+        href: "https://docs.bando.cool",
+      },
+      {
+        label: t("main:main.apiReference", "API Reference"),
+        href: "https://docs.bando.cool/fulfiller-api/api-reference",
+      },
+      {
+        label: t("main:main.becomePartner", "Contact sales"),
+        href: "https://tally.so/r/mexLqk",
+      },
+    ],
+  },
+  {
     title: t("main.about", "About"),
     id: "about",
     items: [

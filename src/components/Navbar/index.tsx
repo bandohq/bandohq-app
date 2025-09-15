@@ -88,51 +88,8 @@ export default function Navbar() {
   };
   
   const menuItems: MenuItem[] = !isMiniPay
-    ? [
-        { text: t("main:main.spend", "Spend"), href: "/" },
-        {
-          text: t("main:main.buySell", "Buy/Sell"),
-          href: "https://ramp.bando.cool/",
-          badge: "Only for 🇲🇽",
-        },
-        {
-          text: t("main:main.docs", "Docs"),
-          subItems: [
-            {
-              text: t("main:main.documentation", "Documentation"),
-              href: "https://docs.bando.cool",
-            },
-            {
-              text: t("main:main.apiReference", "API Reference"),
-              href: "https://docs.bando.cool/fulfiller-api/api-reference",
-            },
-            {
-              text: t("main:main.becomePartner", "Contact sales"),
-              href: "https://tally.so/r/mexLqk",
-            },
-          ],
-        },
-      ]
-    : [
-        { text: t("main:main.spend", "Spend"), href: "/" },
-        {
-          text: t("main:main.docs", "Docs"),
-          subItems: [
-            {
-              text: t("main:main.documentation", "Documentation"),
-              href: "https://docs.bando.cool",
-            },
-            {
-              text: t("main:main.apiReference", "API Reference"),
-              href: "https://docs.bando.cool/fulfiller-api/api-reference",
-            },
-            {
-              text: t("main:main.becomePartner", "Contact sales"),
-              href: "https://tally.so/r/mexLqk",
-            },
-          ],
-        },
-      ];
+    ? []
+    : [];
 
   return (
     <Box sx={{ flexGrow: 1 }}>
