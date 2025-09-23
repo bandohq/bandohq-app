@@ -27,10 +27,10 @@ export const PromoBanner = () => {
             flex: { md: 1 },
           }}
         >
-          Get up to 10% cashback on every purchase!
+          Get up to 8% cashback on every purchase!
         </Typography>
         <Link
-          href="https://bando.cool/blog/bando-10-cashback-is-back?utm_source=blog&utm_medium=app&utm_campaign=cashback&utm_content=tc"
+          href="https://bando.cool/blog/cashback-minipay?utm_source=blog&utm_medium=minipay&utm_campaign=cashback&utm_content=tc"
           target="_blank"
           rel="noopener noreferrer"
           color="warning.contrastText"
