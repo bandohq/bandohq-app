@@ -42,7 +42,6 @@ export default function CleanLayout({ children }: CleanLayoutProps) {
   return (
     <LayoutContainer>
       <Navbar />
-      <PromoBanner />
       <Container>
         <ContentContainer>{children}</ContentContainer>
       </Container>
